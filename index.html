@@ -197,30 +197,155 @@ body{
 .sec-analyze .plat-feat:hover{background:var(--green-lt)}
 .sec-analyze .plat-feat-icon{background:var(--green-lt);color:var(--green)}
 
-/* ── BENEFITS ── */
-.benefits{padding:100px 40px;background:linear-gradient(135deg,#0a0f1e 0%,#111d4a 50%,#1e3a8a 100%);color:#fff;position:relative;overflow:hidden}
-.benefits::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);background-size:32px 32px;pointer-events:none}
-.benefits-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1}
-.benefits-title{text-align:center;margin-bottom:64px}
-.benefits-title h2{font-size:clamp(28px,3.2vw,42px);font-weight:800;line-height:1.12;letter-spacing:-.025em;margin-bottom:14px}
-.benefits-title p{font-size:16px;color:rgba(255,255,255,.55);max-width:520px;margin:0 auto}
-.benefits-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
-.benefit-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:32px;display:flex;gap:20px;align-items:flex-start;transition:background .3s,transform .3s,border-color .3s;position:relative;overflow:hidden}
-.benefit-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity .3s}
-.benefit-card:hover{background:rgba(255,255,255,.08);transform:translateY(-3px);border-color:rgba(255,255,255,.15)}
-.benefit-card:hover::before{opacity:1}
-.b-vote .benefit-card::before,.b-vote::before{background:linear-gradient(90deg,#7c3aed,#a78bfa)}
-.b-time .benefit-card::before,.b-time::before{background:linear-gradient(90deg,#e59500,#fbbf24)}
-.b-form .benefit-card::before,.b-form::before{background:linear-gradient(90deg,#1756c8,#4d7ef7)}
-.b-cert .benefit-card::before,.b-cert::before{background:linear-gradient(90deg,#0d9373,#34d399)}
-.benefit-icon{width:52px;height:52px;border-radius:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
-.benefit-icon svg{width:26px;height:26px}
-.benefit-text h3{font-size:16px;font-weight:700;margin-bottom:6px;color:#fff}
-.benefit-text p{font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.5)}
-.b-vote .benefit-icon{background:rgba(124,58,237,.3)}
-.b-time .benefit-icon{background:rgba(229,149,0,.3)}
-.b-form .benefit-icon{background:rgba(23,86,200,.3)}
-.b-cert .benefit-icon{background:rgba(13,147,115,.3)}
+/* ── WHY COMPIFY ── */
+.why{position:relative;overflow:hidden}
+.why-header{
+  padding:100px 40px 0;
+  background:linear-gradient(135deg,#0a0f1e 0%,#111d4a 50%,#1e3a8a 100%);
+  color:#fff;text-align:center;
+  position:relative;
+}
+.why-header::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);background-size:32px 32px;pointer-events:none}
+.why-header h2{font-size:clamp(30px,3.5vw,48px);font-weight:800;line-height:1.1;letter-spacing:-.03em;margin-bottom:14px;position:relative}
+.why-header p{font-size:17px;color:rgba(255,255,255,.5);max-width:560px;margin:0 auto;position:relative;padding-bottom:80px}
+
+/* Benefit row — alternating dark/darker */
+.ben-row{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  min-height:360px;
+  position:relative;
+}
+.ben-row:nth-child(odd){background:linear-gradient(135deg,#0a0f1e,#111d4a)}
+.ben-row:nth-child(even){background:linear-gradient(135deg,#0e1530,#152155)}
+.ben-row.reverse{direction:rtl}
+.ben-row.reverse>*{direction:ltr}
+
+/* Text side */
+.ben-text{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:60px 64px;color:#fff;
+}
+.ben-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:16px;
+}
+.ben-tag .btdot{width:8px;height:8px;border-radius:50%}
+.ben-text h3{
+  font-size:clamp(22px,2.5vw,32px);font-weight:800;line-height:1.15;
+  letter-spacing:-.02em;margin-bottom:12px;
+}
+.ben-text p{font-size:15px;line-height:1.7;color:rgba(255,255,255,.55);max-width:440px}
+
+/* Visual side */
+.ben-visual{
+  display:flex;align-items:center;justify-content:center;
+  padding:40px;position:relative;overflow:hidden;
+}
+
+/* ── Hub diagram (All-in-one) ── */
+.hub{position:relative;width:280px;height:280px}
+.hub-center{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:72px;height:72px;border-radius:50%;
+  background:linear-gradient(135deg,var(--blue),var(--blue-mid));
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:800;color:#fff;
+  box-shadow:0 0 40px rgba(77,126,247,.4);
+  z-index:2;
+}
+.hub-ring{
+  position:absolute;top:50%;left:50%;
+  width:220px;height:220px;
+  transform:translate(-50%,-50%);
+  border:1.5px dashed rgba(255,255,255,.12);
+  border-radius:50%;
+  animation:hubSpin 30s linear infinite;
+}
+@keyframes hubSpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.hub-node{
+  position:absolute;
+  width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+  backdrop-filter:blur(4px);
+  box-shadow:0 4px 16px rgba(0,0,0,.2);
+}
+.hub-node:nth-child(2){top:-22px;left:50%;transform:translateX(-50%)}
+.hub-node:nth-child(3){top:50%;right:-22px;transform:translateY(-50%)}
+.hub-node:nth-child(4){bottom:-22px;left:50%;transform:translateX(-50%)}
+.hub-node:nth-child(5){top:50%;left:-22px;transform:translateY(-50%)}
+.hub-node:nth-child(6){top:12px;right:12px}
+.hub-node:nth-child(7){bottom:12px;right:12px}
+.hub-line{
+  position:absolute;top:50%;left:50%;
+  width:110px;height:1px;
+  background:linear-gradient(90deg,rgba(77,126,247,.4),transparent);
+  transform-origin:0 0;z-index:1;
+}
+
+/* ── Voting pattern visual ── */
+.vote-visual{display:flex;gap:24px;align-items:flex-end}
+.vote-col{display:flex;flex-direction:column;align-items:center;gap:8px}
+.vote-col-label{font-size:10px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:.06em;text-transform:uppercase}
+.vote-bars{display:flex;gap:4px;align-items:flex-end;height:120px}
+.vote-bar{
+  width:14px;border-radius:4px 4px 0 0;
+  transition:height 1.2s cubic-bezier(.4,0,.2,1);
+}
+.vote-col:nth-child(1) .vote-bar{background:linear-gradient(0deg,rgba(124,58,237,.3),#a78bfa)}
+.vote-col:nth-child(2) .vote-bar{background:linear-gradient(0deg,rgba(229,149,0,.3),#fbbf24)}
+.vote-col:nth-child(3) .vote-bar{background:linear-gradient(0deg,rgba(77,126,247,.3),#4d7ef7)}
+
+/* ── Radar chart visual ── */
+.radar-wrap{width:220px;height:220px;position:relative}
+.radar-wrap svg{width:100%;height:100%}
+.radar-shape{
+  stroke-dasharray:600;stroke-dashoffset:600;
+  transition:stroke-dashoffset 1.5s cubic-bezier(.4,0,.2,1);
+}
+.radar-wrap.animated .radar-shape{stroke-dashoffset:0}
+
+/* ── Ledger visual ── */
+.ledger{display:flex;flex-direction:column;gap:8px;width:260px}
+.ledger-row{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 14px;border-radius:10px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  opacity:0;transform:translateX(-20px);
+  transition:opacity .5s,transform .5s;
+}
+.ledger.animated .ledger-row{opacity:1;transform:translateX(0)}
+.ledger.animated .ledger-row:nth-child(2){transition-delay:.15s}
+.ledger.animated .ledger-row:nth-child(3){transition-delay:.3s}
+.ledger.animated .ledger-row:nth-child(4){transition-delay:.45s}
+.ledger.animated .ledger-row:nth-child(5){transition-delay:.6s}
+.ledger-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.ledger-line{height:4px;border-radius:2px;flex:1}
+.ledger-hash{font-size:10px;font-family:monospace;color:rgba(255,255,255,.3);letter-spacing:.03em}
+
+/* ── Clone visual ── */
+.clone-wrap{position:relative;width:240px;height:200px}
+.clone-card{
+  position:absolute;width:180px;
+  padding:16px 20px;border-radius:14px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  backdrop-filter:blur(8px);
+  color:#fff;
+}
+.clone-card h5{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:4px}
+.clone-card .cc-name{font-size:16px;font-weight:800}
+.clone-card .cc-year{font-size:12px;color:rgba(255,255,255,.35);margin-top:2px}
+.clone-original{top:0;left:0;z-index:2}
+.clone-copy{top:40px;left:50px;z-index:1;opacity:0;transform:translate(-20px,-10px) scale(.95);transition:opacity .8s,transform .8s cubic-bezier(.4,0,.2,1)}
+.clone-wrap.animated .clone-copy{opacity:1;transform:translate(0,0) scale(1)}
+.clone-arrow{
+  position:absolute;top:24px;left:130px;z-index:3;
+  font-size:20px;color:var(--green);
+  opacity:0;transition:opacity .5s .3s;
+}
+.clone-wrap.animated .clone-arrow{opacity:1}
 
 /* ── COST & SAVINGS ── */
 .savings{padding:100px 40px;background:var(--white)}
@@ -274,8 +399,13 @@ body{
   .plat-inner{grid-template-columns:1fr;gap:48px}
   .plat-inner.reverse{direction:ltr}
   .plat-visual img{max-width:320px}
-  .benefits,.savings,.cta{padding:60px 20px}
-  .benefits-grid{grid-template-columns:1fr}
+  .ben-row{grid-template-columns:1fr;min-height:auto}
+  .ben-row.reverse{direction:ltr}
+  .ben-text{padding:40px 24px 20px}
+  .ben-visual{padding:20px 24px 40px}
+  .why-header{padding:60px 20px 0}
+  .why-header p{padding-bottom:48px}
+  .savings,.cta{padding:60px 20px}
   .srow-compare{flex-direction:column;gap:10px}
   .srow-pct{font-size:22px;min-width:60px}
   .nav{padding:0 20px}.nav-links{display:none}
@@ -499,32 +629,181 @@ body{
   </div>
 </section>
 
-<!-- BENEFITS -->
-<section class="benefits" id="benefits">
-  <div class="benefits-inner">
-    <div class="benefits-title reveal">
-      <h2>Why Compify</h2>
-      <p>What makes Compify different from spreadsheets, custom tools, or doing it by hand.</p>
+<!-- WHY COMPIFY -->
+<section class="why" id="benefits">
+
+  <div class="why-header">
+    <h2 class="reveal">Why Compify</h2>
+    <p class="reveal">It's like having a project manager that never sleeps, never makes mistakes, and remembers everything.</p>
+  </div>
+
+  <!-- 1. All-in-one Intelligence -->
+  <div class="ben-row reveal" data-anim="hub">
+    <div class="ben-text">
+      <div class="ben-tag"><span class="btdot" style="background:var(--blue-mid)"></span> All-in-one intelligence</div>
+      <h3>One brain for your entire competition</h3>
+      <p>Compify knows every entry, every judge, every rule, every score. No copy-pasting between tools. Every decision is informed by the full context — participants, products, sessions, criteria. One source of truth.</p>
     </div>
-    <div class="benefits-grid">
-      <div class="benefit-card b-vote reveal">
-        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a7 7 0 0 1 0 14 7 7 0 0 1 0-14"/><circle cx="12" cy="12" r="3"/></svg></div>
-        <div class="benefit-text"><h3>Intelligent Voting Methods</h3><p>Linear, randomized, or proprietary algorithm-based vote distribution. Ensure fairness and eliminate bias.</p></div>
-      </div>
-      <div class="benefit-card b-time reveal reveal-d1">
-        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e59500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-        <div class="benefit-text"><h3>Radical Time Savings</h3><p>Automate repetitive tasks across every phase. What used to take weeks now takes hours.</p></div>
-      </div>
-      <div class="benefit-card b-form reveal reveal-d2">
-        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#4d7ef7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
-        <div class="benefit-text"><h3>Total Form Customization</h3><p>Build evaluation forms, registration flows and application pages exactly how you need. No rigid templates.</p></div>
-      </div>
-      <div class="benefit-card b-cert reveal reveal-d3">
-        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <div class="benefit-text"><h3>Certified Data Logging</h3><p>Every vote, every action logged immutably. Auditable, certified results that withstand any challenge.</p></div>
+    <div class="ben-visual">
+      <div class="hub">
+        <div class="hub-ring">
+          <div class="hub-node">👥</div>
+          <div class="hub-node">🏢</div>
+          <div class="hub-node">📋</div>
+          <div class="hub-node">⚖️</div>
+          <div class="hub-node">🏆</div>
+          <div class="hub-node">💰</div>
+        </div>
+        <div class="hub-center">C</div>
       </div>
     </div>
   </div>
+
+  <!-- 2. Smart Voting Engine -->
+  <div class="ben-row reverse reveal" data-anim="vote">
+    <div class="ben-text">
+      <div class="ben-tag"><span class="btdot" style="background:#a78bfa"></span> Smart voting engine</div>
+      <h3>Three voting methods,<br/>zero bias</h3>
+      <p>Choose linear distribution, randomized assignment, or our proprietary algorithm that optimizes fairness automatically. The system assigns products to judges according to your rules — no manual work, no human error.</p>
+    </div>
+    <div class="ben-visual">
+      <div class="vote-visual">
+        <div class="vote-col">
+          <div class="vote-bars">
+            <div class="vote-bar" data-h="40%"></div>
+            <div class="vote-bar" data-h="55%"></div>
+            <div class="vote-bar" data-h="70%"></div>
+            <div class="vote-bar" data-h="85%"></div>
+            <div class="vote-bar" data-h="100%"></div>
+          </div>
+          <div class="vote-col-label">Linear</div>
+        </div>
+        <div class="vote-col">
+          <div class="vote-bars">
+            <div class="vote-bar" data-h="80%"></div>
+            <div class="vote-bar" data-h="30%"></div>
+            <div class="vote-bar" data-h="95%"></div>
+            <div class="vote-bar" data-h="50%"></div>
+            <div class="vote-bar" data-h="65%"></div>
+          </div>
+          <div class="vote-col-label">Random</div>
+        </div>
+        <div class="vote-col">
+          <div class="vote-bars">
+            <div class="vote-bar" data-h="70%"></div>
+            <div class="vote-bar" data-h="72%"></div>
+            <div class="vote-bar" data-h="68%"></div>
+            <div class="vote-bar" data-h="74%"></div>
+            <div class="vote-bar" data-h="71%"></div>
+          </div>
+          <div class="vote-col-label">Algorithm</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Mathematical Precision -->
+  <div class="ben-row reveal" data-anim="radar">
+    <div class="ben-text">
+      <div class="ben-tag"><span class="btdot" style="background:var(--gold)"></span> Mathematical precision</div>
+      <h3>Results are calculations,<br/>not opinions</h3>
+      <p>Radar charts, weighted averages, score normalization — all generated automatically. Technical sheets produced in any language. Zero manual calculations, zero human error. The math speaks for itself.</p>
+    </div>
+    <div class="ben-visual">
+      <div class="radar-wrap">
+        <svg viewBox="0 0 200 200">
+          <!-- Grid -->
+          <polygon points="100,20 168,55 168,145 100,180 32,145 32,55" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+          <polygon points="100,40 152,65 152,135 100,160 48,135 48,65" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+          <polygon points="100,60 136,75 136,125 100,140 64,125 64,75" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+          <polygon points="100,80 120,85 120,115 100,120 80,115 80,85" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+          <!-- Axes -->
+          <line x1="100" y1="20" x2="100" y2="180" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+          <line x1="32" y1="55" x2="168" y2="145" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+          <line x1="168" y1="55" x2="32" y2="145" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+          <!-- Data shape -->
+          <polygon class="radar-shape" points="100,28 160,60 155,140 100,168 45,130 38,62" fill="rgba(229,149,0,.15)" stroke="#e59500" stroke-width="2"/>
+          <!-- Dots -->
+          <circle cx="100" cy="28" r="4" fill="#e59500"/>
+          <circle cx="160" cy="60" r="4" fill="#e59500"/>
+          <circle cx="155" cy="140" r="4" fill="#e59500"/>
+          <circle cx="100" cy="168" r="4" fill="#e59500"/>
+          <circle cx="45" cy="130" r="4" fill="#e59500"/>
+          <circle cx="38" cy="62" r="4" fill="#e59500"/>
+          <!-- Labels -->
+          <text x="100" y="14" fill="rgba(255,255,255,.35)" font-size="9" text-anchor="middle" font-family="Inter">Aroma</text>
+          <text x="176" y="58" fill="rgba(255,255,255,.35)" font-size="9" font-family="Inter">Body</text>
+          <text x="176" y="150" fill="rgba(255,255,255,.35)" font-size="9" font-family="Inter">Finish</text>
+          <text x="100" y="195" fill="rgba(255,255,255,.35)" font-size="9" text-anchor="middle" font-family="Inter">Balance</text>
+          <text x="20" y="150" fill="rgba(255,255,255,.35)" font-size="9" font-family="Inter">Acidity</text>
+          <text x="18" y="58" fill="rgba(255,255,255,.35)" font-size="9" font-family="Inter">Sweet</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Certified & Auditable -->
+  <div class="ben-row reverse reveal" data-anim="ledger">
+    <div class="ben-text">
+      <div class="ben-tag"><span class="btdot" style="background:#34d399"></span> Certified &amp; auditable</div>
+      <h3>Every action logged.<br/>Every result defensible.</h3>
+      <p>Immutable data logging with timestamps on every vote, every assignment, every score change. Produce auditable, certified results that withstand any challenge, appeal, or regulatory review.</p>
+    </div>
+    <div class="ben-visual">
+      <div class="ledger">
+        <div class="ledger-row">
+          <div class="ledger-dot" style="background:#34d399"></div>
+          <div class="ledger-line" style="background:rgba(52,211,153,.2);width:65%"></div>
+          <div class="ledger-hash">0x3a7f…c2e1</div>
+        </div>
+        <div class="ledger-row">
+          <div class="ledger-dot" style="background:#34d399"></div>
+          <div class="ledger-line" style="background:rgba(52,211,153,.2);width:50%"></div>
+          <div class="ledger-hash">0x91b2…f8d4</div>
+        </div>
+        <div class="ledger-row">
+          <div class="ledger-dot" style="background:#34d399"></div>
+          <div class="ledger-line" style="background:rgba(52,211,153,.2);width:72%"></div>
+          <div class="ledger-hash">0xc4e8…1a5b</div>
+        </div>
+        <div class="ledger-row">
+          <div class="ledger-dot" style="background:#34d399"></div>
+          <div class="ledger-line" style="background:rgba(52,211,153,.2);width:58%"></div>
+          <div class="ledger-hash">0x27d1…9e3c</div>
+        </div>
+        <div class="ledger-row">
+          <div class="ledger-dot" style="background:#34d399"></div>
+          <div class="ledger-line" style="background:rgba(52,211,153,.2);width:80%"></div>
+          <div class="ledger-hash">0xf5a0…6b72</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. One-click Replicability -->
+  <div class="ben-row reveal" data-anim="clone">
+    <div class="ben-text">
+      <div class="ben-tag"><span class="btdot" style="background:var(--green)"></span> One-click replicability</div>
+      <h3>Next edition?<br/>Clone and go.</h3>
+      <p>Your entire competition — configuration, forms, rules, categories, session structure — is reusable. Clone last year's event with one click, change what's different, and you're live. Hours instead of weeks.</p>
+    </div>
+    <div class="ben-visual">
+      <div class="clone-wrap">
+        <div class="clone-card clone-original">
+          <h5>Competition</h5>
+          <div class="cc-name">Sake Awards</div>
+          <div class="cc-year">2025 Edition</div>
+        </div>
+        <div class="clone-arrow">→</div>
+        <div class="clone-card clone-copy">
+          <h5>Competition</h5>
+          <div class="cc-name">Sake Awards</div>
+          <div class="cc-year" style="color:#34d399">2026 Edition ✓</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <!-- COST & SAVINGS -->
@@ -592,12 +871,23 @@ body{
 <script>
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      e.target.querySelectorAll('.srow-fill[data-width]').forEach(b => { b.style.width = b.dataset.width });
-    }
+    if (!e.isIntersecting) return;
+    e.target.classList.add('visible');
+    // Savings bars
+    e.target.querySelectorAll('.srow-fill[data-width]').forEach(b => { b.style.width = b.dataset.width });
+    // Voting bars
+    e.target.querySelectorAll('.vote-bar[data-h]').forEach(b => { b.style.height = b.dataset.h });
+    // Radar chart
+    const rw = e.target.querySelector('.radar-wrap');
+    if (rw) rw.classList.add('animated');
+    // Ledger rows
+    const lg = e.target.querySelector('.ledger');
+    if (lg) lg.classList.add('animated');
+    // Clone animation
+    const cl = e.target.querySelector('.clone-wrap');
+    if (cl) cl.classList.add('animated');
   });
-}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 
