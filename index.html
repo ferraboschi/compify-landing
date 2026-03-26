@@ -406,6 +406,91 @@ body{
 }
 .clone-wrap.animated .clone-arrow{opacity:1;transform:scale(1)}
 
+/* ── Multilingual visual ── */
+.lang-visual{display:flex;flex-direction:column;align-items:center;gap:12px;opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s}
+.ben-row.visible .lang-visual{opacity:1;transform:translateY(0)}
+.lang-bubble{
+  display:flex;align-items:center;gap:10px;
+  padding:12px 18px;border-radius:12px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  opacity:0;transform:translateX(20px);
+  transition:opacity .5s,transform .5s cubic-bezier(.4,0,.2,1);
+}
+.ben-row.visible .lang-bubble{opacity:1;transform:translateX(0)}
+.ben-row.visible .lang-bubble:nth-child(1){transition-delay:.15s}
+.ben-row.visible .lang-bubble:nth-child(2){transition-delay:.3s}
+.ben-row.visible .lang-bubble:nth-child(3){transition-delay:.45s}
+.ben-row.visible .lang-bubble:nth-child(4){transition-delay:.6s}
+.lang-flag{font-size:20px;flex-shrink:0}
+.lang-text{font-size:12px;color:rgba(255,255,255,.5);font-style:italic}
+.lang-label{font-size:10px;font-weight:700;color:rgba(255,255,255,.25);letter-spacing:.04em;text-transform:uppercase;margin-left:auto;padding-left:12px}
+
+/* ── Learn more link ── */
+.ben-link{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:16px;padding:8px 0;
+  font-size:13px;font-weight:600;color:#a78bfa;
+  text-decoration:none;cursor:pointer;border:none;background:none;
+  transition:color .2s,gap .2s;
+}
+.ben-link:hover{color:#c4b5fd;gap:10px}
+.ben-link svg{width:14px;height:14px;transition:transform .2s}
+.ben-link:hover svg{transform:translateX(2px)}
+
+/* ── Modal ── */
+.modal-overlay{
+  position:fixed;top:0;left:0;right:0;bottom:0;z-index:200;
+  background:rgba(10,15,30,.8);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity .3s;
+  padding:20px;
+}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{
+  background:#13192e;border:1px solid rgba(255,255,255,.1);
+  border-radius:20px;max-width:800px;width:100%;
+  max-height:85vh;overflow-y:auto;
+  padding:48px;color:#fff;
+  transform:translateY(20px) scale(.97);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+  position:relative;
+}
+.modal-overlay.open .modal{transform:translateY(0) scale(1)}
+.modal-close{
+  position:absolute;top:20px;right:20px;
+  width:36px;height:36px;border-radius:50%;border:none;
+  background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);
+  font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .2s,color .2s;
+}
+.modal-close:hover{background:rgba(255,255,255,.12);color:#fff}
+.modal h2{font-size:28px;font-weight:800;margin-bottom:8px;letter-spacing:-.02em}
+.modal .modal-sub{font-size:15px;color:rgba(255,255,255,.5);margin-bottom:40px}
+.method-cards{display:flex;flex-direction:column;gap:20px}
+.method-card{
+  padding:28px;border-radius:16px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+}
+.method-card h3{font-size:18px;font-weight:800;margin-bottom:4px;display:flex;align-items:center;gap:10px}
+.method-card .method-desc{font-size:14px;color:rgba(255,255,255,.5);margin-bottom:16px;line-height:1.6}
+.method-card .method-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.method-card .method-col h4{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.method-col.pros h4{color:#34d399}
+.method-col.cons h4{color:#f87171}
+.method-col ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.method-col li{font-size:13px;color:rgba(255,255,255,.5);line-height:1.5;padding-left:18px;position:relative}
+.method-col.pros li::before{content:'✓';position:absolute;left:0;color:#34d399;font-weight:700;font-size:12px}
+.method-col.cons li::before{content:'–';position:absolute;left:2px;color:#f87171;font-weight:700}
+
+@media(max-width:768px){
+  .modal{padding:28px 20px;border-radius:16px}
+  .modal h2{font-size:22px}
+  .method-card .method-grid{grid-template-columns:1fr;gap:12px}
+  .method-card{padding:20px}
+  .lang-bubble{padding:10px 14px}
+}
+
 /* ── COST & SAVINGS ── */
 .savings{padding:100px 40px;background:var(--white)}
 .savings-inner{max-width:900px;margin:0 auto}
@@ -812,8 +897,12 @@ body{
   <div class="ben-row reverse reveal" data-anim="vote">
     <div class="ben-text">
       <div class="ben-tag"><span class="btdot" style="background:#a78bfa"></span> Smart voting engine</div>
-      <h3>Three voting methods,<br/>zero bias</h3>
-      <p>Choose linear distribution, randomized assignment, or our proprietary algorithm that optimizes fairness automatically. The system assigns products to judges according to your rules — no manual work, no human error.</p>
+      <h3>Mathematical rules for<br/>maximum precision</h3>
+      <p>Compify applies mathematical rules to the order in which products are presented to judges, ensuring the most precise and unbiased evaluation possible. Choose from three product ordering methods — linear, randomized, or algorithm-guided — depending on your competition type and needs.</p>
+      <button class="ben-link" onclick="document.getElementById('voteModal').classList.add('open')">
+        Explore the 3 methods
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
     </div>
     <div class="ben-visual">
       <div class="vote-visual">
@@ -971,7 +1060,125 @@ body{
     </div>
   </div>
 
+  <!-- 6. Multilingual -->
+  <div class="ben-row reverse reveal">
+    <div class="ben-text">
+      <div class="ben-tag"><span class="btdot" style="background:var(--blue-mid)"></span> Multilingual by design</div>
+      <h3>Every judge writes in their language. Every report speaks yours.</h3>
+      <p>Judges evaluate and write tasting notes in their native language — no barriers, no translation delays. Reports and technical sheets are generated in any language you need. True international competitions, without compromise.</p>
+    </div>
+    <div class="ben-visual">
+      <div class="lang-visual">
+        <div class="lang-bubble">
+          <div class="lang-flag">🇯🇵</div>
+          <div class="lang-text">"香りが豊かで繊細..."</div>
+          <div class="lang-label">Judge</div>
+        </div>
+        <div class="lang-bubble">
+          <div class="lang-flag">🇫🇷</div>
+          <div class="lang-text">"Nez complexe, notes florales..."</div>
+          <div class="lang-label">Judge</div>
+        </div>
+        <div class="lang-bubble">
+          <div class="lang-flag">🇮🇹</div>
+          <div class="lang-text">"Profilo aromatico intenso..."</div>
+          <div class="lang-label">Judge</div>
+        </div>
+        <div class="lang-bubble" style="border-color:rgba(77,126,247,.25);background:rgba(77,126,247,.08)">
+          <div class="lang-flag">📄</div>
+          <div class="lang-text" style="color:rgba(255,255,255,.7);font-style:normal;font-weight:600">"Rich aroma, delicate..."</div>
+          <div class="lang-label" style="color:var(--blue-mid)">Report EN</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </section>
+
+<!-- VOTING METHODS MODAL -->
+<div class="modal-overlay" id="voteModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('voteModal').classList.remove('open')">×</button>
+    <h2>Product Ordering Methods</h2>
+    <p class="modal-sub">How Compify decides the order in which products are presented to each judge.</p>
+    <div class="method-cards">
+
+      <div class="method-card">
+        <h3><span style="color:#a78bfa">━</span> Linear</h3>
+        <p class="method-desc">Products are presented in the same fixed order to every judge. Simple and predictable — the classic approach for traditional competitions.</p>
+        <div class="method-grid">
+          <div class="method-col pros">
+            <h4>Pros</h4>
+            <ul>
+              <li>Simple to understand and set up</li>
+              <li>Easy to track which product is being evaluated</li>
+              <li>Consistent experience for all judges</li>
+              <li>Ideal for small competitions</li>
+            </ul>
+          </div>
+          <div class="method-col cons">
+            <h4>Cons</h4>
+            <ul>
+              <li>Palate fatigue affects later products</li>
+              <li>Position bias: first and last products are rated differently</li>
+              <li>Not suitable for large-scale blind tastings</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="method-card">
+        <h3><span style="color:#fbbf24">⟠</span> Randomized</h3>
+        <p class="method-desc">Each judge receives products in a completely random order. Eliminates position bias by distributing palate fatigue effects evenly across all entries.</p>
+        <div class="method-grid">
+          <div class="method-col pros">
+            <h4>Pros</h4>
+            <ul>
+              <li>Eliminates position bias completely</li>
+              <li>Distributes palate fatigue effects evenly</li>
+              <li>Statistically fair for all entries</li>
+              <li>Works well for any competition size</li>
+            </ul>
+          </div>
+          <div class="method-col cons">
+            <h4>Cons</h4>
+            <ul>
+              <li>Harder to coordinate logistics (stewards need per-judge order)</li>
+              <li>Requires more careful table management</li>
+              <li>Harder to troubleshoot if issues arise mid-session</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="method-card">
+        <h3><span style="color:#4d7ef7">◆</span> Algorithm-guided</h3>
+        <p class="method-desc">Compify's proprietary algorithm optimizes product order per judge, balancing multiple factors: category diversity, palate reset needs, producer separation, and statistical fairness. The most advanced method.</p>
+        <div class="method-grid">
+          <div class="method-col pros">
+            <h4>Pros</h4>
+            <ul>
+              <li>Maximizes evaluation precision mathematically</li>
+              <li>Balances multiple fairness criteria simultaneously</li>
+              <li>Separates same-producer products automatically</li>
+              <li>Optimizes palate fatigue recovery</li>
+              <li>Best results for high-stakes competitions</li>
+            </ul>
+          </div>
+          <div class="method-col cons">
+            <h4>Cons</h4>
+            <ul>
+              <li>Less transparent to judges (order logic is algorithmic)</li>
+              <li>Requires full product data to be entered in advance</li>
+              <li>Overkill for small, informal competitions</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 <!-- COST & SAVINGS -->
 <section class="savings" id="savings">
