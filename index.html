@@ -336,31 +336,47 @@ body{
 .radar-wrap.animated svg circle:nth-of-type(6){transition-delay:1.55s}
 
 /* ── Ledger visual ── */
-.ledger{display:flex;flex-direction:column;gap:6px;width:280px}
+.ledger-wrap{display:flex;flex-direction:column;align-items:center;gap:16px}
+.cert-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 20px;border-radius:100px;
+  background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.25);
+  color:#34d399;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  opacity:0;transform:scale(.8);
+  transition:opacity .6s .7s,transform .6s cubic-bezier(.34,1.56,.64,1) .7s;
+}
+.ledger.animated + .cert-badge,.ben-row.visible .cert-badge{opacity:1;transform:scale(1)}
+.cert-badge svg{width:16px;height:16px}
+.cert-badge-pulse{
+  animation:badgePulse 2s ease-in-out infinite;
+}
+@keyframes badgePulse{0%,100%{box-shadow:0 0 0 0 rgba(52,211,153,.3)}50%{box-shadow:0 0 0 10px rgba(52,211,153,0)}}
+
+.ledger{display:flex;flex-direction:column;gap:4px;width:280px}
 .ledger-row{
-  display:flex;align-items:center;gap:10px;
-  padding:12px 16px;border-radius:10px;
-  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);
+  display:flex;align-items:center;gap:8px;
+  padding:10px 14px;border-radius:10px;
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);
   opacity:0;transform:translateX(-30px) scale(.95);
   transition:opacity .5s,transform .5s cubic-bezier(.4,0,.2,1);
+  position:relative;
 }
 .ledger.animated .ledger-row{opacity:1;transform:translateX(0) scale(1)}
 .ledger.animated .ledger-row:nth-child(1){transition-delay:.1s}
-.ledger.animated .ledger-row:nth-child(2){transition-delay:.22s}
-.ledger.animated .ledger-row:nth-child(3){transition-delay:.34s}
-.ledger.animated .ledger-row:nth-child(4){transition-delay:.46s}
-.ledger.animated .ledger-row:nth-child(5){transition-delay:.58s}
-/* connector line between rows */
+.ledger.animated .ledger-row:nth-child(2){transition-delay:.2s}
+.ledger.animated .ledger-row:nth-child(3){transition-delay:.3s}
+.ledger.animated .ledger-row:nth-child(4){transition-delay:.4s}
+.ledger.animated .ledger-row:nth-child(5){transition-delay:.5s}
 .ledger-row::before{
-  content:'';position:absolute;left:27px;top:-7px;
-  width:1px;height:7px;background:rgba(52,211,153,.2);
+  content:'';position:absolute;left:21px;top:-5px;
+  width:1px;height:5px;background:rgba(52,211,153,.15);
 }
 .ledger-row:first-child::before{display:none}
-.ledger-row{position:relative}
 .ledger-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;box-shadow:0 0 8px rgba(52,211,153,.4)}
 .ledger-line{height:4px;border-radius:2px;flex:1}
-.ledger-hash{font-size:10px;font-family:'Courier New',monospace;color:rgba(255,255,255,.3);letter-spacing:.03em}
-.ledger-time{font-size:9px;font-family:'Courier New',monospace;color:rgba(255,255,255,.2);min-width:52px}
+.ledger-action{font-size:10px;font-weight:600;color:rgba(255,255,255,.4);min-width:72px}
+.ledger-hash{font-size:9px;font-family:'Courier New',monospace;color:rgba(255,255,255,.2);letter-spacing:.03em}
+.ledger-time{font-size:9px;font-family:'Courier New',monospace;color:rgba(255,255,255,.2);min-width:48px}
 
 /* ── Clone visual ── */
 .clone-wrap{position:relative;width:260px;height:220px;opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s}
@@ -428,30 +444,120 @@ body{
 
 /* ── RESPONSIVE ── */
 @media(max-width:768px){
-  .hero{padding:60px 20px 80px}
-  .hero-inner{grid-template-columns:1fr;gap:32px}
+  .nav{padding:0 16px}
+  .nav-links{display:none}
+  .logo img{width:28px;height:28px;border-radius:6px}
+
+  /* Hero: stack, center, compact visual */
+  .hero{padding:56px 20px 72px}
+  .hero-inner{grid-template-columns:1fr;gap:24px}
   .hero-text{text-align:center}
-  .hero-visual{height:200px}
-  .overview{margin-top:-36px;padding:0 16px}
-  .overview-inner{flex-wrap:wrap;gap:12px;padding:20px 16px}
+  .hero h1{font-size:32px}
+  .hero p{font-size:15px;margin:0 auto}
+  .hero-cta{padding:12px 28px;font-size:14px}
+  .hero-visual{height:160px}
+  .float-card{padding:10px 12px;border-radius:10px}
+  .float-card h4{font-size:9px;margin-bottom:4px}
+  .float-card .fc-val{font-size:18px}
+  .float-card .fc-sub{font-size:10px}
+  .fc-1{top:0;left:8px}.fc-2{top:20px;right:0}.fc-3{bottom:20px;left:16px}.fc-4{bottom:0;right:8px}
+
+  /* Overview: 2x2 grid instead of row */
+  .overview{margin-top:-32px;padding:0 16px}
+  .overview-inner{
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:16px;padding:20px;
+  }
   .ov-arrow{display:none}
-  .ov-step{min-width:70px}
-  .ov-icon{width:60px;height:60px;border-radius:14px}
+  .ov-step{min-width:auto}
+  .ov-icon{width:52px;height:52px;border-radius:12px;margin:0 auto 6px}
   .ov-label{font-size:12px}
-  .plat-section{padding:80px 20px}
-  .plat-inner{grid-template-columns:1fr;gap:48px}
+  .ov-phase{font-size:9px}
+
+  /* Platform sections: visual smaller, centered, with container */
+  .plat-section{padding:64px 20px}
+  .plat-inner{grid-template-columns:1fr;gap:32px}
   .plat-inner.reverse{direction:ltr}
-  .plat-visual img{max-width:320px}
+  .plat-section h2{font-size:26px}
+  .plat-desc{font-size:15px}
+  .plat-visual{
+    order:-1; /* image ABOVE text on mobile */
+    padding:0 24px;
+  }
+  .plat-visual img{
+    max-width:220px;
+    padding:16px;
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:16px;
+    box-shadow:0 4px 20px rgba(15,23,41,.06);
+  }
+  .plat-feat{padding:12px 14px}
+  .plat-feat-icon{width:36px;height:36px;border-radius:10px;font-size:16px}
+  .plat-feat h4{font-size:14px}
+  .plat-feat p{font-size:12.5px}
+
+  /* Why Compify: benefit rows */
+  .why-header{padding:56px 20px 0}
+  .why-header h2{font-size:28px}
+  .why-header p{font-size:15px;padding-bottom:40px}
   .ben-row{grid-template-columns:1fr;min-height:auto}
   .ben-row.reverse{direction:ltr}
-  .ben-text{padding:40px 24px 20px}
-  .ben-visual{padding:20px 24px 40px}
-  .why-header{padding:60px 20px 0}
-  .why-header p{padding-bottom:48px}
-  .savings,.cta{padding:60px 20px}
-  .srow-compare{flex-direction:column;gap:10px}
+  .ben-text{padding:36px 24px 16px}
+  .ben-text h3{font-size:22px}
+  .ben-text p{font-size:14px}
+  /* Visuals on mobile: contained, centered, smaller */
+  .ben-visual{
+    padding:8px 32px 36px;
+    display:flex;justify-content:center;
+  }
+  /* Hub */
+  .hub{width:200px;height:200px}
+  .hub-center{width:56px;height:56px}
+  .hub-center img{width:40px;height:40px}
+  .hub-ring{width:160px;height:160px}
+  .hub-node{width:34px;height:34px;font-size:13px}
+  .hub-node:nth-child(2){top:-17px}
+  .hub-node:nth-child(3){right:-17px}
+  .hub-node:nth-child(4){bottom:-17px}
+  .hub-node:nth-child(5){left:-17px}
+  .hub-node:nth-child(6){top:8px;right:8px}
+  .hub-node:nth-child(7){bottom:8px;right:8px}
+  /* Voting */
+  .vote-visual{gap:20px}
+  .vote-bars{height:100px;gap:3px}
+  .vote-bar{width:12px}
+  .vote-col-label{font-size:9px}
+  /* Radar */
+  .radar-wrap{width:180px;height:180px}
+  /* Ledger */
+  .ledger{width:100%;max-width:300px}
+  .ledger-row{padding:8px 10px;gap:6px}
+  .ledger-time{font-size:8px;min-width:40px}
+  .ledger-action{font-size:9px;min-width:60px}
+  .ledger-hash{font-size:8px}
+  .cert-badge{font-size:11px;padding:8px 16px}
+  /* Clone */
+  .clone-wrap{width:200px;height:180px}
+  .clone-card{width:150px;padding:12px 16px}
+  .clone-card .cc-name{font-size:14px}
+  .clone-copy{top:36px;left:44px}
+  .clone-arrow{left:110px;top:20px;font-size:18px}
+
+  /* Savings */
+  .savings{padding:60px 20px}
+  .savings-title h2{font-size:26px}
+  .srow{padding:18px 16px}
+  .srow-title{font-size:14px}
+  .srow-compare{flex-direction:column;gap:8px}
   .srow-pct{font-size:22px;min-width:60px}
-  .nav{padding:0 20px}.nav-links{display:none}
+  .srow-side-label{font-size:10px}
+  .srow-fill{font-size:10px;padding:0 8px}
+
+  /* CTA */
+  .cta{padding:56px 20px}
+  .cta h2{font-size:24px}
+  .cta-btn{padding:14px 32px;font-size:14px}
 }
 
 /* ── ANIMATIONS ── */
@@ -793,36 +899,47 @@ body{
       <p>Immutable data logging with timestamps on every vote, every assignment, every score change. Produce auditable, certified results that withstand any challenge, appeal, or regulatory review.</p>
     </div>
     <div class="ben-visual">
-      <div class="ledger">
-        <div class="ledger-row">
-          <div class="ledger-dot" style="background:#34d399"></div>
-          <div class="ledger-time">09:14:02</div>
-          <div class="ledger-line" style="background:rgba(52,211,153,.2);width:65%"></div>
-          <div class="ledger-hash">Vote recorded</div>
+      <div class="ledger-wrap">
+        <div class="ledger">
+          <div class="ledger-row">
+            <div class="ledger-dot" style="background:#34d399"></div>
+            <div class="ledger-time">09:14:02</div>
+            <div class="ledger-action">Vote recorded</div>
+            <div class="ledger-line" style="background:rgba(52,211,153,.15);width:40%"></div>
+            <div class="ledger-hash">0x3a7f…c2</div>
+          </div>
+          <div class="ledger-row">
+            <div class="ledger-dot" style="background:#34d399"></div>
+            <div class="ledger-time">09:14:18</div>
+            <div class="ledger-action">Score saved</div>
+            <div class="ledger-line" style="background:rgba(52,211,153,.15);width:30%"></div>
+            <div class="ledger-hash">0x91b2…f8</div>
+          </div>
+          <div class="ledger-row">
+            <div class="ledger-dot" style="background:#34d399"></div>
+            <div class="ledger-time">09:15:41</div>
+            <div class="ledger-action">Rule checked</div>
+            <div class="ledger-line" style="background:rgba(52,211,153,.15);width:35%"></div>
+            <div class="ledger-hash">0xc4e8…1a</div>
+          </div>
+          <div class="ledger-row">
+            <div class="ledger-dot" style="background:#34d399"></div>
+            <div class="ledger-time">09:16:03</div>
+            <div class="ledger-action">Vote recorded</div>
+            <div class="ledger-line" style="background:rgba(52,211,153,.15);width:28%"></div>
+            <div class="ledger-hash">0x27d1…9e</div>
+          </div>
+          <div class="ledger-row">
+            <div class="ledger-dot" style="background:#34d399"></div>
+            <div class="ledger-time">09:16:29</div>
+            <div class="ledger-action">Session sealed</div>
+            <div class="ledger-line" style="background:rgba(52,211,153,.15);width:45%"></div>
+            <div class="ledger-hash">0xf5a0…6b</div>
+          </div>
         </div>
-        <div class="ledger-row">
-          <div class="ledger-dot" style="background:#34d399"></div>
-          <div class="ledger-time">09:14:18</div>
-          <div class="ledger-line" style="background:rgba(52,211,153,.2);width:50%"></div>
-          <div class="ledger-hash">Score saved</div>
-        </div>
-        <div class="ledger-row">
-          <div class="ledger-dot" style="background:#34d399"></div>
-          <div class="ledger-time">09:15:41</div>
-          <div class="ledger-line" style="background:rgba(52,211,153,.2);width:72%"></div>
-          <div class="ledger-hash">Rule checked</div>
-        </div>
-        <div class="ledger-row">
-          <div class="ledger-dot" style="background:#34d399"></div>
-          <div class="ledger-time">09:16:03</div>
-          <div class="ledger-line" style="background:rgba(52,211,153,.2);width:58%"></div>
-          <div class="ledger-hash">Vote recorded</div>
-        </div>
-        <div class="ledger-row">
-          <div class="ledger-dot" style="background:#34d399"></div>
-          <div class="ledger-time">09:16:29</div>
-          <div class="ledger-line" style="background:rgba(52,211,153,.2);width:80%"></div>
-          <div class="ledger-hash">Session sealed</div>
+        <div class="cert-badge cert-badge-pulse">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+          Certified &amp; Tamper-proof
         </div>
       </div>
     </div>
