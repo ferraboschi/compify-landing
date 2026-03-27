@@ -505,22 +505,57 @@ body{
   padding:28px;border-radius:16px;
   background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
 }
-.method-card h3{font-size:18px;font-weight:800;margin-bottom:4px;display:flex;align-items:center;gap:10px}
-.method-card .method-desc{font-size:14px;color:rgba(255,255,255,.5);margin-bottom:16px;line-height:1.6}
-.method-card .method-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.method-card .method-col h4{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
-.method-col.pros h4{color:#34d399}
-.method-col.cons h4{color:#f87171}
-.method-col ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
-.method-col li{font-size:13px;color:rgba(255,255,255,.5);line-height:1.5;padding-left:18px;position:relative}
-.method-col.pros li::before{content:'✓';position:absolute;left:0;color:#34d399;font-weight:700;font-size:12px}
-.method-col.cons li::before{content:'–';position:absolute;left:2px;color:#f87171;font-weight:700}
+.method-card h3{font-size:18px;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.method-icon{
+  width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+}
+.method-card .method-desc{font-size:14px;color:rgba(255,255,255,.6);margin-bottom:14px;line-height:1.7}
+.method-card .method-desc strong{color:rgba(255,255,255,.9);font-weight:700}
+.method-best{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 16px;border-radius:100px;
+  font-size:12px;font-weight:600;letter-spacing:.02em;
+}
+.method-best-label{color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.08em;font-size:11px}
+
+/* Method colors */
+.method-card.m-linear .method-icon{background:rgba(167,139,250,.15)}
+.method-card.m-linear h3{color:#c4b5fd}
+.method-card.m-linear .method-best{background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.2);color:#c4b5fd}
+
+.method-card.m-random .method-icon{background:rgba(251,191,36,.15)}
+.method-card.m-random h3{color:#fde68a}
+.method-card.m-random .method-best{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.2);color:#fde68a}
+
+.method-card.m-guided .method-icon{background:rgba(96,165,250,.15)}
+.method-card.m-guided h3{color:#93c5fd}
+.method-card.m-guided .method-best{background:rgba(96,165,250,.1);border:1px solid rgba(96,165,250,.2);color:#93c5fd}
+
+/* Languages section */
+.modal-langs{
+  margin-top:36px;padding-top:28px;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+.modal-langs h4{
+  font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.4);margin-bottom:16px;
+}
+.lang-grid{display:flex;flex-wrap:wrap;gap:8px}
+.lang-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 14px;border-radius:100px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  font-size:13px;color:rgba(255,255,255,.7);font-weight:500;
+}
+.lang-tag .lang-flag{font-size:16px;line-height:1}
 
 @media(max-width:768px){
   .modal{padding:28px 20px;border-radius:16px}
   .modal h2{font-size:22px}
-  .method-card .method-grid{grid-template-columns:1fr;gap:12px}
   .method-card{padding:20px}
+  .lang-grid{gap:6px}
+  .lang-tag{padding:5px 12px;font-size:12px}
   .lang-bubble{padding:10px 14px}
 }
 
@@ -1128,79 +1163,49 @@ body{
     <p class="modal-sub">How Compify decides the order in which products are presented to each judge.</p>
     <div class="method-cards">
 
-      <div class="method-card">
-        <h3><span style="color:#a78bfa">━</span> Linear</h3>
-        <p class="method-desc">Products are presented in the same fixed order to every judge. Simple and predictable — the classic approach for traditional competitions.</p>
-        <div class="method-grid">
-          <div class="method-col pros">
-            <h4>Pros</h4>
-            <ul>
-              <li>Simple to understand and set up</li>
-              <li>Easy to track which product is being evaluated</li>
-              <li>Consistent experience for all judges</li>
-              <li>Ideal for small competitions</li>
-            </ul>
-          </div>
-          <div class="method-col cons">
-            <h4>Cons</h4>
-            <ul>
-              <li>Palate fatigue affects later products</li>
-              <li>Position bias: first and last products are rated differently</li>
-              <li>Not suitable for large-scale blind tastings</li>
-            </ul>
-          </div>
+      <div class="method-card m-linear">
+        <h3><span class="method-icon">━</span> Linear</h3>
+        <p class="method-desc">Products are presented in the <strong>same fixed numerical order</strong> to every judge — bottle 1, bottle 2, bottle 3. The classic setup: simple, predictable, and easy for <strong>stewards to manage on the floor</strong>. Every judge evaluates the same sequence, making logistics straightforward and coordination minimal.</p>
+        <div class="method-best">
+          <span class="method-best-label">Ideal for:</span>
+          Traditional in-person competitions, sommelier exams, small panels with a fixed tasting flight
         </div>
       </div>
 
-      <div class="method-card">
-        <h3><span style="color:#fbbf24">⟠</span> Randomized</h3>
-        <p class="method-desc">Each judge receives products in a completely random order. Eliminates position bias by distributing palate fatigue effects evenly across all entries.</p>
-        <div class="method-grid">
-          <div class="method-col pros">
-            <h4>Pros</h4>
-            <ul>
-              <li>Eliminates position bias completely</li>
-              <li>Distributes palate fatigue effects evenly</li>
-              <li>Statistically fair for all entries</li>
-              <li>Works well for any competition size</li>
-            </ul>
-          </div>
-          <div class="method-col cons">
-            <h4>Cons</h4>
-            <ul>
-              <li>Harder to coordinate logistics (stewards need per-judge order)</li>
-              <li>Requires more careful table management</li>
-              <li>Harder to troubleshoot if issues arise mid-session</li>
-            </ul>
-          </div>
+      <div class="method-card m-random">
+        <h3><span class="method-icon">⟠</span> Randomized</h3>
+        <p class="method-desc">Each judge receives products in a <strong>completely unique random order</strong>, generated by Compify at the start of the session. This <strong>eliminates position bias</strong> — no product is systematically penalized by always being tasted first or last. Particularly effective when the <strong>back office controls the serving sequence</strong> or when judges evaluate remotely on their own devices.</p>
+        <div class="method-best">
+          <span class="method-best-label">Ideal for:</span>
+          Online competitions, remote judging, events where the back office defines the product sequence
         </div>
       </div>
 
-      <div class="method-card">
-        <h3><span style="color:#4d7ef7">◆</span> Algorithm-guided</h3>
-        <p class="method-desc">Compify's proprietary algorithm optimizes product order per judge, balancing multiple factors: category diversity, palate reset needs, producer separation, and statistical fairness. The most advanced method.</p>
-        <div class="method-grid">
-          <div class="method-col pros">
-            <h4>Pros</h4>
-            <ul>
-              <li>Maximizes evaluation precision mathematically</li>
-              <li>Balances multiple fairness criteria simultaneously</li>
-              <li>Separates same-producer products automatically</li>
-              <li>Optimizes palate fatigue recovery</li>
-              <li>Best results for high-stakes competitions</li>
-            </ul>
-          </div>
-          <div class="method-col cons">
-            <h4>Cons</h4>
-            <ul>
-              <li>Less transparent to judges (order logic is algorithmic)</li>
-              <li>Requires full product data to be entered in advance</li>
-              <li>Overkill for small, informal competitions</li>
-            </ul>
-          </div>
+      <div class="method-card m-guided">
+        <h3><span class="method-icon">◆</span> Algorithm-guided</h3>
+        <p class="method-desc">Compify's <strong>proprietary algorithm builds a custom tasting order for each judge</strong>, optimizing across multiple dimensions simultaneously: it <strong>separates products from the same producer</strong>, alternates between categories to allow <strong>palate recovery</strong>, avoids clustering similar styles, and ensures <strong>statistical fairness</strong> across the full panel. The result is a tasting path that maximizes evaluation accuracy — something no manual planning could achieve at scale.</p>
+        <div class="method-best">
+          <span class="method-best-label">Ideal for:</span>
+          High-stakes international competitions, large panels (50+ entries), multi-category events requiring maximum precision
         </div>
       </div>
 
+    </div>
+
+    <!-- Languages -->
+    <div class="modal-langs">
+      <h4>Available languages</h4>
+      <div class="lang-grid">
+        <span class="lang-tag"><span class="lang-flag">🇬🇧</span> English</span>
+        <span class="lang-tag"><span class="lang-flag">🇮🇹</span> Italiano</span>
+        <span class="lang-tag"><span class="lang-flag">🇫🇷</span> Français</span>
+        <span class="lang-tag"><span class="lang-flag">🇪🇸</span> Español</span>
+        <span class="lang-tag"><span class="lang-flag">🇩🇪</span> Deutsch</span>
+        <span class="lang-tag"><span class="lang-flag">🇯🇵</span> 日本語</span>
+        <span class="lang-tag"><span class="lang-flag">🇨🇳</span> 中文</span>
+        <span class="lang-tag"><span class="lang-flag">🇵🇹</span> Português</span>
+        <span class="lang-tag"><span class="lang-flag">🇰🇷</span> 한국어</span>
+      </div>
     </div>
   </div>
 </div>
