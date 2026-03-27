@@ -41,9 +41,8 @@ body{
 /* ── NAV ── */
 .nav{position:sticky;top:0;z-index:100;background:rgba(250,251,255,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 40px}
 .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px;color:var(--blue);letter-spacing:-.03em;text-decoration:none}
-.logo img{width:32px;height:32px;border-radius:8px}
-.logo span{color:var(--text)}
+.logo{display:flex;align-items:center;text-decoration:none}
+.logo img{height:32px;width:auto}
 .nav-links{display:flex;gap:28px;align-items:center}
 .nav-links a{font-size:14px;font-weight:500;color:var(--muted);text-decoration:none;transition:color .2s}
 .nav-links a:hover{color:var(--text)}
@@ -658,7 +657,7 @@ body{
 @media(max-width:768px){
   .nav{padding:0 16px}
   .nav-links{display:none}
-  .logo img{width:28px;height:28px;border-radius:6px}
+  .logo img{height:26px;width:auto}
 
   /* Hero: stack, center, compact visual */
   .hero{padding:56px 20px 72px}
@@ -787,7 +786,7 @@ body{
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="#" class="logo"><img src="picto.png" alt="Compify"/>comp<span>ify</span></a>
+    <a href="#" class="logo"><img src="logo.png" alt="Compify"/></a>
     <div class="nav-links">
       <a href="#platform">Platform</a>
       <a href="#savings">Pricing</a>
