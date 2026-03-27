@@ -79,14 +79,21 @@ body{
 .lang-sel-dd button.active{background:rgba(23,86,200,.08);font-weight:700;color:var(--blue)}
 .nav-links .btn-nav:hover{background:#1248a8;transform:translateY(-1px);box-shadow:0 4px 12px rgba(23,86,200,.35)}
 
+/* ── FIRST SCREEN WRAPPER ── */
+.first-screen{
+  min-height:100svh;min-height:100vh;
+  display:flex;flex-direction:column;
+}
+@supports(min-height:100svh){.first-screen{min-height:100svh}}
+
 /* ── HERO ── */
-.hero{position:relative;overflow:hidden;padding:100px 40px 120px;background:linear-gradient(135deg,#0a0f1e 0%,#111d4a 40%,#1e3a8a 100%);color:#fff}
+.hero{position:relative;overflow:hidden;padding:80px 40px 80px;background:linear-gradient(135deg,#0a0f1e 0%,#111d4a 40%,#1e3a8a 100%);color:#fff;flex:1;display:flex;align-items:center}
 .hero-orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;opacity:.4;animation:orbFloat 8s ease-in-out infinite alternate}
 .hero-orb-1{width:500px;height:500px;background:#4d7ef7;top:-120px;right:-100px}
 .hero-orb-2{width:350px;height:350px;background:#7c3aed;bottom:-80px;left:-60px;animation-delay:2s}
 .hero-orb-3{width:250px;height:250px;background:#0d9373;top:40%;left:50%;animation-delay:4s}
 @keyframes orbFloat{0%{transform:translate(0,0) scale(1)}100%{transform:translate(30px,-20px) scale(1.08)}}
-.hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;width:100%}
 .hero-text{text-align:left}
 .hero-badge{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:6px 16px;border-radius:100px;margin-bottom:24px;color:rgba(255,255,255,.8)}
 .hero h1{font-size:clamp(34px,4.5vw,56px);font-weight:800;line-height:1.08;letter-spacing:-.03em;margin-bottom:20px}
@@ -109,7 +116,7 @@ body{
 .fc-dot{width:8px;height:8px;border-radius:50%}
 
 /* ── OVERVIEW FLOW BAR ── */
-.overview{padding:0 40px;margin-top:-56px;position:relative;z-index:10}
+.overview{padding:0 40px;margin-top:-56px;position:relative;z-index:10;flex-shrink:0}
 .overview-inner{
   max-width:1000px;margin:0 auto;
   background:var(--white);border:1px solid var(--border);
@@ -752,30 +759,30 @@ body{
   .lang-sel-btn{padding:4px 8px;font-size:12px}
 
   /* Hero: stack, center, compact visual */
-  .hero{padding:56px 20px 72px}
-  .hero-inner{grid-template-columns:1fr;gap:24px}
+  .hero{padding:40px 20px 48px}
+  .hero-inner{grid-template-columns:1fr;gap:16px}
   .hero-text{text-align:center}
-  .hero h1{font-size:32px}
-  .hero p{font-size:15px;margin:0 auto}
-  .hero-cta{padding:12px 28px;font-size:14px}
-  .hero-visual{height:160px}
-  .float-card{padding:10px 12px;border-radius:10px}
-  .float-card h4{font-size:9px;margin-bottom:4px}
-  .float-card .fc-val{font-size:18px}
-  .float-card .fc-sub{font-size:10px}
-  .fc-1{top:0;left:8px}.fc-2{top:20px;right:0}.fc-3{bottom:20px;left:16px}.fc-4{bottom:0;right:8px}
+  .hero h1{font-size:28px;margin-bottom:12px}
+  .hero p{font-size:14px;margin:0 auto;line-height:1.5}
+  .hero-cta{padding:10px 24px;font-size:13px;margin-top:16px}
+  .hero-visual{height:140px}
+  .float-card{padding:8px 10px;border-radius:8px}
+  .float-card h4{font-size:8px;margin-bottom:3px}
+  .float-card .fc-val{font-size:16px}
+  .float-card .fc-sub{font-size:9px}
+  .fc-1{top:0;left:4px}.fc-2{top:10px;right:0}.fc-3{bottom:10px;left:8px}.fc-4{bottom:0;right:4px}
 
   /* Overview: 2x2 grid instead of row */
-  .overview{margin-top:-32px;padding:0 16px}
+  .overview{margin-top:-24px;padding:0 16px}
   .overview-inner{
     display:grid;grid-template-columns:1fr 1fr;
-    gap:16px;padding:20px;
+    gap:12px;padding:16px;
   }
   .ov-arrow{display:none}
   .ov-step{min-width:auto}
-  .ov-icon{width:52px;height:52px;border-radius:12px;margin:0 auto 6px}
-  .ov-label{font-size:12px}
-  .ov-phase{font-size:9px}
+  .ov-icon{width:44px;height:44px;border-radius:10px;margin:0 auto 4px}
+  .ov-label{font-size:11px}
+  .ov-phase{font-size:8px}
 
   /* Platform sections: visual smaller, centered, with container */
   .plat-section{padding:64px 20px}
@@ -862,6 +869,19 @@ body{
   .cta-btn{padding:14px 32px;font-size:14px}
 }
 
+/* Very small screens (iPhone SE, etc) */
+@media(max-height:700px) and (max-width:768px){
+  .hero{padding:28px 16px 36px}
+  .hero-badge{font-size:10px;padding:4px 12px;margin-bottom:12px}
+  .hero h1{font-size:24px;margin-bottom:8px}
+  .hero p{font-size:13px}
+  .hero-cta{padding:8px 20px;font-size:12px;margin-top:12px}
+  .hero-visual{height:110px}
+  .overview-inner{gap:8px;padding:12px}
+  .ov-icon{width:36px;height:36px;border-radius:8px;margin:0 auto 3px}
+  .ov-label{font-size:10px}
+}
+
 /* ── ANIMATIONS ── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 .hero-text>*{animation:fadeUp .7s ease both}
@@ -905,6 +925,7 @@ body{
 </nav>
 
 <!-- HERO -->
+<div class="first-screen">
 <section class="hero">
   <div class="hero-orb hero-orb-1"></div>
   <div class="hero-orb hero-orb-2"></div>
@@ -983,6 +1004,7 @@ body{
     </a>
   </div>
 </div>
+</div><!-- /.first-screen -->
 
 <!-- ═══ PLATFORM SECTIONS ═══ -->
 
