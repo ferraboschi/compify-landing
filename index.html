@@ -621,7 +621,7 @@ body{
 
 /* Three compact columns */
 .val-cols{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
   margin-bottom:48px;
 }
 .val-col{
@@ -638,7 +638,7 @@ body{
   font-size:22px;margin-bottom:16px;
 }
 .val-col h3{
-  font-size:18px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px;
+  font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:10px;
 }
 .val-col ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
 .val-col li{
@@ -667,6 +667,12 @@ body{
 .val-col-scale .val-col-icon{background:var(--violet-lt)}
 .val-col-scale h3{color:var(--violet)}
 .val-col-scale li::before{background:var(--violet)}
+
+/* Personalize */
+.val-col-personalize::before{background:linear-gradient(90deg,var(--gold),#fbbf24)}
+.val-col-personalize .val-col-icon{background:rgba(229,149,0,.1)}
+.val-col-personalize h3{color:var(--gold)}
+.val-col-personalize li::before{background:var(--gold)}
 
 /* Closing line */
 .pricing-close{
@@ -793,9 +799,9 @@ body{
   .pct-number span{font-size:24px}
   .pricing-headline h2{font-size:26px}
   .pricing-headline p{font-size:15px;max-width:100%}
-  .val-cols{grid-template-columns:1fr;gap:16px}
+  .val-cols{grid-template-columns:1fr 1fr;gap:16px}
   .val-col{padding:24px 20px}
-  .val-col h3{font-size:16px}
+  .val-col h3{font-size:18px}
   /* CTA */
   .cta{padding:56px 20px}
   .cta h2{font-size:24px}
@@ -1304,6 +1310,16 @@ body{
           <li data-i18n="price_s2">Replicate last year in minutes</li>
           <li data-i18n="price_s3">More entries = more revenue, same team</li>
           <li data-i18n="price_s4">Remote judge onboarding, zero training</li>
+        </ul>
+      </div>
+      <div class="val-col val-col-personalize">
+        <div class="val-col-icon">&#x1f3a8;</div>
+        <h3 data-i18n="price_personalize">Personalize</h3>
+        <ul>
+          <li data-i18n="price_pe1">Custom scoring criteria per category</li>
+          <li data-i18n="price_pe2">Your branding on every touchpoint</li>
+          <li data-i18n="price_pe3">Flexible evaluation forms &amp; workflows</li>
+          <li data-i18n="price_pe4">Tailored reports in your language &amp; format</li>
         </ul>
       </div>
     </div>

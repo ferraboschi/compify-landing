@@ -114,7 +114,12 @@ const T = {
     ledger_sealed: "Session sealed",
     vote_linear: "Linear",
     vote_random: "Random",
-    vote_algorithm: "Algorithm"
+    vote_algorithm: "Algorithm",
+    price_personalize: "Personalize",
+    price_pe1: "Custom scoring criteria per category",
+    price_pe2: "Your branding on every touchpoint",
+    price_pe3: "Flexible evaluation forms & workflows",
+    price_pe4: "Tailored reports in your language & format"
   },
   it: {
     nav_platform: "Piattaforma",
@@ -231,7 +236,12 @@ const T = {
     ledger_sealed: "Sessione sigillata",
     vote_linear: "Lineare",
     vote_random: "Casuale",
-    vote_algorithm: "Algoritmo"
+    vote_algorithm: "Algoritmo",
+    price_personalize: "Personalizza",
+    price_pe1: "Criteri di punteggio personalizzati per categoria",
+    price_pe2: "Il tuo branding su ogni punto di contatto",
+    price_pe3: "Moduli di valutazione e flussi flessibili",
+    price_pe4: "Report su misura nella tua lingua e formato"
   },
   fr: {
     nav_platform: "Plateforme",
@@ -348,7 +358,12 @@ const T = {
     ledger_sealed: "Session scellée",
     vote_linear: "Linéaire",
     vote_random: "Aléatoire",
-    vote_algorithm: "Algorithme"
+    vote_algorithm: "Algorithme",
+    price_personalize: "Personnaliser",
+    price_pe1: "Critères de notation personnalisés par catégorie",
+    price_pe2: "Votre image de marque sur chaque point de contact",
+    price_pe3: "Formulaires d'évaluation et workflows flexibles",
+    price_pe4: "Rapports adaptés dans votre langue et format"
   },
   es: {
     nav_platform: "Plataforma",
@@ -465,7 +480,12 @@ const T = {
     ledger_sealed: "Sesión sellada",
     vote_linear: "Lineal",
     vote_random: "Aleatorio",
-    vote_algorithm: "Algoritmo"
+    vote_algorithm: "Algoritmo",
+    price_personalize: "Personalizar",
+    price_pe1: "Criterios de puntuación personalizados por categoría",
+    price_pe2: "Tu marca en cada punto de contacto",
+    price_pe3: "Formularios de evaluación y flujos flexibles",
+    price_pe4: "Informes a medida en tu idioma y formato"
   },
   de: {
     nav_platform: "Plattform",
@@ -582,7 +602,12 @@ const T = {
     ledger_sealed: "Sitzung versiegelt",
     vote_linear: "Linear",
     vote_random: "Zufällig",
-    vote_algorithm: "Algorithmus"
+    vote_algorithm: "Algorithmus",
+    price_personalize: "Personalisieren",
+    price_pe1: "Individuelle Bewertungskriterien pro Kategorie",
+    price_pe2: "Ihr Branding an jedem Kontaktpunkt",
+    price_pe3: "Flexible Bewertungsformulare und Workflows",
+    price_pe4: "Maßgeschneiderte Berichte in Ihrer Sprache und Format"
   },
   ja: {
     nav_platform: "プラットフォーム",
@@ -699,7 +724,12 @@ const T = {
     ledger_sealed: "セッションが封印されました",
     vote_linear: "リニア",
     vote_random: "ランダム",
-    vote_algorithm: "アルゴリズム"
+    vote_algorithm: "アルゴリズム",
+    price_personalize: "カスタマイズ",
+    price_pe1: "カテゴリ別のカスタム採点基準",
+    price_pe2: "すべてのタッチポイントにあなたのブランド",
+    price_pe3: "柔軟な評価フォームとワークフロー",
+    price_pe4: "あなたの言語とフォーマットに合わせたレポート"
   },
   zh: {
     nav_platform: "平台",
@@ -816,7 +846,12 @@ const T = {
     ledger_sealed: "会议已密封",
     vote_linear: "线性",
     vote_random: "随机",
-    vote_algorithm: "算法"
+    vote_algorithm: "算法",
+    price_personalize: "个性化",
+    price_pe1: "按类别自定义评分标准",
+    price_pe2: "在每个接触点展示您的品牌",
+    price_pe3: "灵活的评估表单和工作流程",
+    price_pe4: "以您的语言和格式定制报告"
   },
   pt: {
     nav_platform: "Plataforma",
@@ -933,7 +968,12 @@ const T = {
     ledger_sealed: "Sessão selada",
     vote_linear: "Linear",
     vote_random: "Aleatório",
-    vote_algorithm: "Algoritmo"
+    vote_algorithm: "Algoritmo",
+    price_personalize: "Personalizar",
+    price_pe1: "Critérios de pontuação personalizados por categoria",
+    price_pe2: "Sua marca em cada ponto de contato",
+    price_pe3: "Formulários de avaliação e fluxos flexíveis",
+    price_pe4: "Relatórios sob medida no seu idioma e formato"
   },
   ko: {
     nav_platform: "플랫폼",
@@ -1050,6 +1090,11 @@ const T = {
     ledger_sealed: "세션 봉인됨",
     vote_linear: "선형",
     vote_random: "무작위",
-    vote_algorithm: "알고리즘"
+    vote_algorithm: "알고리즘",
+    price_personalize: "맞춤 설정",
+    price_pe1: "카테고리별 맞춤 채점 기준",
+    price_pe2: "모든 접점에 브랜드 적용",
+    price_pe3: "유연한 평가 양식 및 워크플로우",
+    price_pe4: "귀하의 언어와 형식에 맞는 맞춤 보고서"
   }
 };
