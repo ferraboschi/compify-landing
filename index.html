@@ -492,166 +492,113 @@ body{
 }
 
 /* ── WHAT 3% GETS YOU ── */
-.val-header{
-  text-align:center;padding:80px 40px 0;position:relative;
-  background:linear-gradient(180deg,#0a0f1e,#0d1333);
-}
-.val-header::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);background-size:32px 32px;pointer-events:none}
-.val-header h2{font-size:clamp(30px,3.5vw,48px);font-weight:800;line-height:1.1;letter-spacing:-.03em;margin-bottom:14px;color:#fff;position:relative}
-.val-header p{font-size:17px;color:rgba(255,255,255,.5);max-width:600px;margin:0 auto;position:relative;padding-bottom:72px;line-height:1.6}
+.pricing{padding:100px 40px;background:var(--white);overflow:hidden}
+.pricing-inner{max-width:1100px;margin:0 auto}
 
-/* Big 3% hero number */
-.pct-hero{
-  position:relative;display:flex;align-items:center;justify-content:center;
-  padding:48px 40px;
-  background:linear-gradient(135deg,#0a0f1e,#111d4a);
+/* Top: ring + headline side by side */
+.pricing-top{
+  display:flex;align-items:center;justify-content:center;gap:48px;
+  margin-bottom:56px;
 }
 .pct-ring{
-  width:200px;height:200px;position:relative;
+  width:160px;height:160px;position:relative;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
 }
 .pct-ring svg{position:absolute;top:0;left:0;width:100%;height:100%}
-.pct-ring circle{fill:none;stroke-width:4}
-.pct-ring .pct-track{stroke:rgba(255,255,255,.06)}
+.pct-ring circle{fill:none;stroke-width:5}
+.pct-ring .pct-track{stroke:var(--border)}
 .pct-ring .pct-fill{
-  stroke:var(--blue-mid);stroke-linecap:round;
-  stroke-dasharray:565;stroke-dashoffset:565;
+  stroke:var(--blue);stroke-linecap:round;
+  stroke-dasharray:440;stroke-dashoffset:440;
   transition:stroke-dashoffset 1.8s cubic-bezier(.4,0,.2,1);
   transform:rotate(-90deg);transform-origin:center;
 }
-.visible .pct-fill{stroke-dashoffset:548} /* 3% of 565 = ~17 filled */
-.pct-number{font-size:64px;font-weight:800;color:#fff;letter-spacing:-.04em;position:relative}
-.pct-number span{font-size:36px;color:var(--blue-mid)}
-.pct-caption{
-  position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
-  font-size:12px;color:rgba(255,255,255,.3);letter-spacing:.06em;text-transform:uppercase;
-  white-space:nowrap;
+.visible .pct-fill{stroke-dashoffset:427} /* 3% of 440 ≈ 13 filled */
+.pct-number{font-size:52px;font-weight:800;color:var(--dark);letter-spacing:-.04em;position:relative}
+.pct-number span{font-size:30px;color:var(--blue)}
+.pricing-headline h2{
+  font-size:clamp(26px,3vw,40px);font-weight:800;line-height:1.15;
+  letter-spacing:-.03em;margin-bottom:10px;
 }
+.pricing-headline p{font-size:16px;color:var(--muted);line-height:1.6;max-width:400px}
 
-/* Value rows — same pattern as ben-row */
-.val-row{
-  display:grid;grid-template-columns:1fr 1fr;
-  min-height:340px;overflow:hidden;
+/* Three compact columns */
+.val-cols{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  margin-bottom:48px;
 }
-.val-row:nth-child(odd){background:linear-gradient(135deg,#0a0f1e,#111d4a)}
-.val-row:nth-child(even){background:linear-gradient(135deg,#0e1530,#152155)}
-.val-row.reverse{direction:rtl}
-.val-row.reverse>*{direction:ltr}
-
-/* Text side */
-.val-text{
-  padding:64px 56px;display:flex;flex-direction:column;justify-content:center;
-}
-.val-tag{
-  display:inline-block;font-size:10px;font-weight:700;letter-spacing:.12em;
-  text-transform:uppercase;padding:5px 12px;border-radius:100px;
-  margin-bottom:16px;width:fit-content;
-}
-.val-text h3{
-  font-size:clamp(22px,2.2vw,30px);font-weight:800;color:#fff;
-  letter-spacing:-.02em;line-height:1.2;margin-bottom:14px;
-}
-.val-text p{font-size:15px;line-height:1.7;color:rgba(255,255,255,.55);max-width:440px}
-
-/* Visual side */
-.val-visual{
-  display:flex;align-items:center;justify-content:center;
-  padding:40px;position:relative;overflow:hidden;
-}
-
-/* ── Unlock visual: stacking cards ── */
-.unlock-stack{display:flex;flex-direction:column;gap:12px;width:240px}
-.unlock-card{
-  padding:14px 20px;border-radius:12px;
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);
-  display:flex;align-items:center;gap:12px;
-  opacity:0;transform:translateX(40px);
-  transition:opacity .5s ease,transform .5s ease;
-}
-.visible .unlock-card{opacity:1;transform:translateX(0)}
-.visible .unlock-card:nth-child(2){transition-delay:.15s}
-.visible .unlock-card:nth-child(3){transition-delay:.3s}
-.visible .unlock-card:nth-child(4){transition-delay:.45s}
-.unlock-card-icon{
-  width:36px;height:36px;border-radius:10px;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;font-size:16px;
-}
-.unlock-card-text{font-size:12px;font-weight:600;color:rgba(255,255,255,.7);line-height:1.4}
-
-/* ── Protect visual: shield with checkmarks ── */
-.shield-wrap{position:relative;width:180px;height:200px}
-.shield-svg{width:100%;height:100%}
-.shield-check{
-  position:absolute;width:28px;height:28px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:12px;font-weight:700;color:#fff;
-  opacity:0;transform:scale(0);transition:opacity .4s ease,transform .4s cubic-bezier(.34,1.56,.64,1);
-}
-.visible .shield-check{opacity:1;transform:scale(1)}
-.shield-check:nth-child(2){top:20px;right:-10px;background:var(--green);transition-delay:.3s}
-.shield-check:nth-child(3){top:70px;right:-20px;background:#34d399;transition-delay:.5s}
-.shield-check:nth-child(4){bottom:50px;right:-10px;background:var(--green);transition-delay:.7s}
-.shield-check:nth-child(5){bottom:30px;left:-10px;background:#34d399;transition-delay:.9s}
-
-/* ── Scale visual: growing bar chart ── */
-.scale-bars{display:flex;align-items:flex-end;gap:8px;height:160px}
-.scale-bar{
-  width:32px;border-radius:6px 6px 0 0;
-  background:linear-gradient(180deg,var(--violet),rgba(124,58,237,.3));
-  transform-origin:bottom;transform:scaleY(0);
-  transition:transform .6s cubic-bezier(.34,1.56,.64,1);
-}
-.visible .scale-bar{transform:scaleY(1)}
-.visible .scale-bar:nth-child(1){transition-delay:.1s}
-.visible .scale-bar:nth-child(2){transition-delay:.2s}
-.visible .scale-bar:nth-child(3){transition-delay:.3s}
-.visible .scale-bar:nth-child(4){transition-delay:.4s}
-.visible .scale-bar:nth-child(5){transition-delay:.5s}
-.visible .scale-bar:nth-child(6){transition-delay:.6s}
-.scale-label{
-  font-size:9px;font-weight:700;color:rgba(255,255,255,.35);
-  text-align:center;margin-top:6px;letter-spacing:.04em;
-}
-
-/* ── What disappears strip ── */
-.disappears{
-  padding:40px;text-align:center;
-  background:linear-gradient(135deg,#1a0a0a,#2a0f0f);
+.val-col{
+  padding:32px 24px;border-radius:20px;
+  background:var(--bg);border:1px solid var(--border);
+  transition:box-shadow .3s,transform .3s;
   position:relative;overflow:hidden;
 }
-.disappears::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background-image:radial-gradient(rgba(248,113,113,.03) 1px,transparent 1px);background-size:24px 24px;pointer-events:none}
+.val-col::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.val-col:hover{box-shadow:0 8px 32px rgba(15,23,41,.06);transform:translateY(-2px)}
+.val-col-icon{
+  width:48px;height:48px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;margin-bottom:16px;
+}
+.val-col h3{
+  font-size:18px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px;
+}
+.val-col ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.val-col li{
+  font-size:13px;color:var(--muted);line-height:1.5;
+  padding-left:16px;position:relative;
+}
+.val-col li::before{
+  content:'';position:absolute;left:0;top:7px;
+  width:5px;height:5px;border-radius:50%;
+}
+
+/* Unlock */
+.val-col-unlock::before{background:linear-gradient(90deg,var(--blue),var(--blue-mid))}
+.val-col-unlock .val-col-icon{background:var(--blue-lt)}
+.val-col-unlock h3{color:var(--blue)}
+.val-col-unlock li::before{background:var(--blue)}
+
+/* Protect */
+.val-col-protect::before{background:linear-gradient(90deg,var(--green),#34d399)}
+.val-col-protect .val-col-icon{background:var(--green-lt)}
+.val-col-protect h3{color:var(--green)}
+.val-col-protect li::before{background:var(--green)}
+
+/* Scale */
+.val-col-scale::before{background:linear-gradient(90deg,var(--violet),#a78bfa)}
+.val-col-scale .val-col-icon{background:var(--violet-lt)}
+.val-col-scale h3{color:var(--violet)}
+.val-col-scale li::before{background:var(--violet)}
+
+/* What disappears strip */
+.disappears{
+  margin-bottom:40px;padding:28px 32px;border-radius:16px;
+  background:linear-gradient(135deg,#fef2f2,#fff8f8);
+  border:1px solid rgba(248,113,113,.12);
+  text-align:center;
+}
 .disappears h4{
-  font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:rgba(248,113,113,.6);margin-bottom:20px;position:relative;
+  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:#dc2626;margin-bottom:14px;
 }
 .disappears-list{
-  display:flex;flex-wrap:wrap;justify-content:center;gap:10px;position:relative;
+  display:flex;flex-wrap:wrap;justify-content:center;gap:8px;
 }
 .disappears-tag{
-  padding:8px 20px;border-radius:100px;
+  padding:6px 16px;border-radius:100px;
   background:rgba(248,113,113,.06);
-  border:1px solid rgba(248,113,113,.1);
-  font-size:13px;color:rgba(248,113,113,.7);font-weight:500;
-  text-decoration:line-through;text-decoration-color:rgba(248,113,113,.35);
+  border:1px solid rgba(248,113,113,.12);
+  font-size:12px;color:#b91c1c;font-weight:500;
+  text-decoration:line-through;text-decoration-color:rgba(185,28,28,.35);
   text-decoration-thickness:1.5px;
 }
 
-/* ── Closing statement ── */
-.val-close{
-  text-align:center;padding:64px 40px;
-  background:linear-gradient(135deg,#0a0f1e,#0d1333);
-  position:relative;
+/* Closing line */
+.pricing-close{
+  text-align:center;font-size:17px;color:var(--muted);line-height:1.6;
 }
-.val-close h3{
-  font-size:clamp(22px,2.8vw,32px);font-weight:800;
-  color:#fff;letter-spacing:-.02em;margin-bottom:12px;
-}
-.val-close h3 span{
-  background:linear-gradient(90deg,var(--blue-mid),#34d399);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;
-}
-.val-close p{font-size:15px;color:rgba(255,255,255,.45);max-width:520px;margin:0 auto;line-height:1.6}
+.pricing-close strong{color:var(--dark);font-weight:700}
 
 /* ── CTA ── */
 .cta{padding:80px 40px;text-align:center;background:var(--bg)}
@@ -765,29 +712,19 @@ body{
   .clone-arrow{left:110px;top:20px;font-size:18px}
 
   /* What 3% gets you */
-  .val-header{padding:56px 20px 0}
-  .val-header h2{font-size:28px}
-  .val-header p{font-size:15px;padding-bottom:48px}
-  .pct-hero{padding:32px 20px}
-  .pct-ring{width:140px;height:140px}
-  .pct-number{font-size:44px}
-  .pct-number span{font-size:26px}
-  .val-row{grid-template-columns:1fr;min-height:auto}
-  .val-row.reverse{direction:ltr}
-  .val-text{padding:36px 24px 16px}
-  .val-text h3{font-size:22px}
-  .val-text p{font-size:14px}
-  .val-visual{padding:16px 32px 36px}
-  .unlock-stack{width:200px}
-  .shield-wrap{width:140px;height:160px}
-  .scale-bars{height:120px}
-  .scale-bar{width:24px}
-  .disappears{padding:28px 20px}
-  .disappears-list{gap:8px}
-  .disappears-tag{padding:6px 14px;font-size:11px}
-  .val-close{padding:40px 20px}
-  .val-close h3{font-size:22px}
-  .val-close p{font-size:14px}
+  .pricing{padding:60px 20px}
+  .pricing-top{flex-direction:column;gap:24px;text-align:center;margin-bottom:40px}
+  .pct-ring{width:120px;height:120px}
+  .pct-number{font-size:40px}
+  .pct-number span{font-size:24px}
+  .pricing-headline h2{font-size:26px}
+  .pricing-headline p{font-size:15px;max-width:100%}
+  .val-cols{grid-template-columns:1fr;gap:16px}
+  .val-col{padding:24px 20px}
+  .val-col h3{font-size:16px}
+  .disappears{padding:20px 16px;margin-bottom:28px}
+  .disappears-list{gap:6px}
+  .disappears-tag{padding:5px 12px;font-size:11px}
 
   /* CTA */
   .cta{padding:56px 20px}
@@ -1335,115 +1272,76 @@ body{
 </div>
 
 <!-- WHAT 3% GETS YOU -->
-<div class="val-header reveal" id="savings">
-  <h2>What 3 % gets you</h2>
-  <p>Compify costs 3 % of entry fees. No per-seat pricing, no hidden charges. Here's what that 3 % replaces — and what it unlocks for the first time.</p>
-</div>
+<section class="pricing" id="savings">
+  <div class="pricing-inner">
 
-<!-- Animated 3% ring -->
-<div class="pct-hero reveal">
-  <div class="pct-ring">
-    <svg viewBox="0 0 200 200"><circle class="pct-track" cx="100" cy="100" r="90"/><circle class="pct-fill" cx="100" cy="100" r="90"/></svg>
-    <div class="pct-number">3<span>%</span></div>
-  </div>
-  <div class="pct-caption">of entry fees &middot; that's it</div>
-</div>
-
-<!-- UNLOCK row -->
-<div class="val-row reveal">
-  <div class="val-text">
-    <div class="val-tag" style="background:var(--blue-lt);color:var(--blue)">Unlock</div>
-    <h3>Capabilities that didn't exist before</h3>
-    <p>Instant results the moment voting closes. Automated certificates, reports and invoices in one click. Multilingual judging — each judge writes in their language, reports come out in yours. A branded competition page included at no extra cost.</p>
-  </div>
-  <div class="val-visual">
-    <div class="unlock-stack">
-      <div class="unlock-card">
-        <div class="unlock-card-icon" style="background:rgba(77,126,247,.15)">&#x26a1;</div>
-        <div class="unlock-card-text">Instant results</div>
+    <!-- Ring + headline -->
+    <div class="pricing-top reveal">
+      <div class="pct-ring">
+        <svg viewBox="0 0 160 160"><circle class="pct-track" cx="80" cy="80" r="70"/><circle class="pct-fill" cx="80" cy="80" r="70"/></svg>
+        <div class="pct-number">3<span>%</span></div>
       </div>
-      <div class="unlock-card">
-        <div class="unlock-card-icon" style="background:rgba(77,126,247,.15)">&#x1f4dc;</div>
-        <div class="unlock-card-text">Auto certificates &amp; invoices</div>
-      </div>
-      <div class="unlock-card">
-        <div class="unlock-card-icon" style="background:rgba(77,126,247,.15)">&#x1f310;</div>
-        <div class="unlock-card-text">Multilingual judging</div>
-      </div>
-      <div class="unlock-card">
-        <div class="unlock-card-icon" style="background:rgba(77,126,247,.15)">&#x1f3e0;</div>
-        <div class="unlock-card-text">Branded event page</div>
+      <div class="pricing-headline">
+        <h2>What 3 % gets you</h2>
+        <p>Of entry fees. No per-seat pricing, no hidden charges. Here's what that 3 % eliminates — and what it makes possible.</p>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- PROTECT row -->
-<div class="val-row reverse reveal">
-  <div class="val-text">
-    <div class="val-tag" style="background:var(--green-lt);color:var(--green)">Protect</div>
-    <h3>Eliminate risk, not people</h3>
-    <p>Certified, tamper-proof audit trail — every score timestamped and hash-verified. No more transcription errors, lost ballots or misread handwriting. Mathematical scoring rules applied consistently. Dispute-proof results you can share with full confidence.</p>
-  </div>
-  <div class="val-visual">
-    <div class="shield-wrap">
-      <svg class="shield-svg" viewBox="0 0 180 200">
-        <defs>
-          <linearGradient id="shieldGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="rgba(13,147,115,.3)"/>
-            <stop offset="100%" stop-color="rgba(13,147,115,.05)"/>
-          </linearGradient>
-        </defs>
-        <path d="M90 10 L170 50 L170 110 C170 155 130 185 90 195 C50 185 10 155 10 110 L10 50 Z" fill="url(#shieldGrad)" stroke="rgba(52,211,153,.3)" stroke-width="1.5"/>
-        <path d="M65 100 L82 117 L118 81" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="80" stroke-dashoffset="80" class="shield-tick"/>
-      </svg>
-      <div class="shield-check">&#x2713;</div>
-      <div class="shield-check">&#x2713;</div>
-      <div class="shield-check">&#x2713;</div>
-      <div class="shield-check">&#x2713;</div>
+    <!-- Three columns -->
+    <div class="val-cols reveal">
+      <div class="val-col val-col-unlock">
+        <div class="val-col-icon">&#x1f513;</div>
+        <h3>Unlock</h3>
+        <ul>
+          <li>Instant results when voting closes</li>
+          <li>Auto certificates, reports &amp; invoices</li>
+          <li>Multilingual judging &amp; reports</li>
+          <li>Branded competition page included</li>
+        </ul>
+      </div>
+      <div class="val-col val-col-protect">
+        <div class="val-col-icon">&#x1f6e1;</div>
+        <h3>Protect</h3>
+        <ul>
+          <li>Tamper-proof, hash-verified audit trail</li>
+          <li>Zero transcription or data-entry errors</li>
+          <li>Consistent mathematical scoring rules</li>
+          <li>Dispute-proof, certified results</li>
+        </ul>
+      </div>
+      <div class="val-col val-col-scale">
+        <div class="val-col-icon">&#x1f680;</div>
+        <h3>Scale</h3>
+        <ul>
+          <li>50 or 5,000 entries — same workflow</li>
+          <li>Replicate last year in minutes</li>
+          <li>More entries = more revenue, same team</li>
+          <li>Remote judge onboarding, zero training</li>
+        </ul>
+      </div>
     </div>
-  </div>
-</div>
 
-<!-- SCALE row -->
-<div class="val-row reveal">
-  <div class="val-text">
-    <div class="val-tag" style="background:var(--violet-lt);color:var(--violet)">Scale</div>
-    <h3>Grow revenue, not headcount</h3>
-    <p>Handle 50 or 5,000 entries with the same workflow. Replicate last year's competition in minutes, not weeks. More entries means more revenue — the platform scales, your team doesn't have to. Onboard judges remotely with zero training.</p>
-  </div>
-  <div class="val-visual">
-    <div class="scale-bars">
-      <div><div class="scale-bar" style="height:40px"></div><div class="scale-label">Y1</div></div>
-      <div><div class="scale-bar" style="height:60px"></div><div class="scale-label">Y2</div></div>
-      <div><div class="scale-bar" style="height:85px"></div><div class="scale-label">Y3</div></div>
-      <div><div class="scale-bar" style="height:105px"></div><div class="scale-label">Y4</div></div>
-      <div><div class="scale-bar" style="height:130px"></div><div class="scale-label">Y5</div></div>
-      <div><div class="scale-bar" style="height:160px"></div><div class="scale-label">Y6</div></div>
+    <!-- What disappears -->
+    <div class="disappears reveal">
+      <h4>What you leave behind</h4>
+      <div class="disappears-list">
+        <span class="disappears-tag">Paper ballots</span>
+        <span class="disappears-tag">Manual data entry</span>
+        <span class="disappears-tag">Excel tabulation</span>
+        <span class="disappears-tag">Email chaos</span>
+        <span class="disappears-tag">Handwritten scores</span>
+        <span class="disappears-tag">Post-event disputes</span>
+        <span class="disappears-tag">Week-long reporting</span>
+      </div>
     </div>
-  </div>
-</div>
 
-<!-- What disappears -->
-<div class="disappears reveal">
-  <h4>What you leave behind</h4>
-  <div class="disappears-list">
-    <span class="disappears-tag">Paper ballots</span>
-    <span class="disappears-tag">Manual data entry</span>
-    <span class="disappears-tag">Excel tabulation</span>
-    <span class="disappears-tag">Email back-and-forth</span>
-    <span class="disappears-tag">Handwritten scores</span>
-    <span class="disappears-tag">Post-event disputes</span>
-    <span class="disappears-tag">Week-long reporting</span>
-    <span class="disappears-tag">Manual invoicing</span>
-  </div>
-</div>
+    <!-- Closing -->
+    <div class="pricing-close reveal">
+      <p><strong>3 % that pays for itself from day one</strong> — not because you need fewer people, but because your people can finally focus on running a world-class event.</p>
+    </div>
 
-<!-- Closing -->
-<div class="val-close reveal">
-  <h3>3 % that <span>pays for itself</span> from day one.</h3>
-  <p>Not because you spend less on people — but because your people spend their time on what matters: running a world-class competition.</p>
-</div>
+  </div>
+</section>
 
 <!-- CTA -->
 <section class="cta reveal">
@@ -1463,9 +1361,6 @@ const obs = new IntersectionObserver(entries => {
     e.target.querySelectorAll('.disappears-tag').forEach((el,i) => {
       el.style.transitionDelay = (i * 60) + 'ms';
     });
-    // Shield tick animation
-    const tick = e.target.querySelector('.shield-tick');
-    if (tick) setTimeout(() => { tick.style.transition = 'stroke-dashoffset .8s ease .4s'; tick.style.strokeDashoffset = '0'; }, 100);
     // Voting bars
     e.target.querySelectorAll('.vote-bar[data-h]').forEach(b => { b.style.height = b.dataset.h });
     // Radar chart
