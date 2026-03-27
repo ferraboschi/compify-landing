@@ -735,17 +735,17 @@ body{
   .why-sub-header h3{font-size:20px}
 }
 
-/* ── CTA (inside compare) ── */
-.compare-cta{
-  text-align:center;margin-top:48px;
-  padding:48px 32px;border-radius:20px;
+/* ── CTA SECTION (standalone, after pricing) ── */
+.cta-section{
+  text-align:center;padding:80px 40px;
   background:linear-gradient(135deg,#0f1a3d 0%,#1756c8 100%);
+  color:#fff;
 }
-.compare-cta h3{
+.cta-section h3{
   font-size:clamp(24px,3vw,34px);font-weight:800;letter-spacing:-.025em;
-  margin-bottom:12px;color:#fff;
+  margin-bottom:12px;
 }
-.compare-cta p{font-size:15px;color:rgba(255,255,255,.6);margin-bottom:28px;max-width:460px;margin-left:auto;margin-right:auto}
+.cta-section p{font-size:15px;color:rgba(255,255,255,.6);margin-bottom:28px;max-width:460px;margin-left:auto;margin-right:auto}
 .cta-btn{display:inline-block;background:#fff;color:var(--blue);padding:16px 40px;border-radius:100px;font-size:16px;font-weight:700;text-decoration:none;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 4px 20px rgba(0,0,0,.15)}
 .cta-btn:hover{background:#f0f4ff;transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.2)}
 
@@ -860,8 +860,8 @@ body{
   .val-col{padding:24px 20px}
   .val-col h3{font-size:18px}
   /* CTA */
-  .compare-cta{padding:36px 20px;margin-top:32px}
-  .compare-cta h3{font-size:22px}
+  .cta-section{padding:56px 20px}
+  .cta-section h3{font-size:22px}
   .cta-btn{padding:14px 32px;font-size:14px}
 }
 
@@ -1360,14 +1360,6 @@ body{
 
   </div>
 
-  <!-- CTA inside Why Compify -->
-  <div class="compare-inner" style="margin-top:48px">
-    <div class="compare-cta reveal">
-      <h3 data-i18n="cta_h2">Ready to streamline your next competition?</h3>
-      <p data-i18n="cta_p">Join organizers who save hundreds of hours per event with Compify.</p>
-      <a href="mailto:info@compify.io" class="cta-btn" data-i18n="cta_btn">Get in touch</a>
-    </div>
-  </div>
 
 </section>
 
@@ -1426,11 +1418,9 @@ body{
   </div>
 </div>
 
-<!-- WHAT 3% GETS YOU -->
+<!-- PRICING -->
 <section class="pricing" id="savings">
   <div class="pricing-inner">
-
-    <!-- Ring + headline -->
     <div class="pricing-top reveal">
       <div class="pct-ring">
         <svg viewBox="0 0 160 160"><circle class="pct-track" cx="80" cy="80" r="70"/><circle class="pct-fill" cx="80" cy="80" r="70"/></svg>
@@ -1438,60 +1428,20 @@ body{
       </div>
       <div class="pricing-headline">
         <h2 data-i18n-html="price_h2">Simple pricing: <em>3 % flat</em></h2>
-        <p data-i18n="price_sub">Compify takes 3 % of entry fees — and nothing else. No setup costs, no monthly subscriptions, no per-seat licenses. You pay only when your competition collects entries. Here's what that 3 % includes.</p>
+        <p data-i18n="price_sub">Compify takes 3 % of entry fees — and nothing else. No setup costs, no monthly subscriptions, no per-seat licenses. You pay only when your competition collects entries.</p>
       </div>
     </div>
-
-    <!-- Three columns -->
-    <div class="val-cols reveal">
-      <div class="val-col val-col-unlock">
-        <div class="val-col-icon">&#x1f513;</div>
-        <h3 data-i18n="price_unlock">Unlock</h3>
-        <ul>
-          <li data-i18n="price_u1">Instant results when voting closes</li>
-          <li data-i18n="price_u2">Auto certificates, reports &amp; invoices</li>
-          <li data-i18n="price_u3">Multilingual judging &amp; reports</li>
-          <li data-i18n="price_u4">Branded competition page included</li>
-        </ul>
-      </div>
-      <div class="val-col val-col-protect">
-        <div class="val-col-icon">&#x1f6e1;</div>
-        <h3 data-i18n="price_protect">Protect</h3>
-        <ul>
-          <li data-i18n="price_p1">Tamper-proof, hash-verified audit trail</li>
-          <li data-i18n="price_p2">Zero transcription or data-entry errors</li>
-          <li data-i18n="price_p3">Consistent mathematical scoring rules</li>
-          <li data-i18n="price_p4">Dispute-proof, certified results</li>
-        </ul>
-      </div>
-      <div class="val-col val-col-scale">
-        <div class="val-col-icon">&#x1f680;</div>
-        <h3 data-i18n="price_scale">Scale</h3>
-        <ul>
-          <li data-i18n="price_s1">50 or 5,000 entries — same workflow</li>
-          <li data-i18n="price_s2">Replicate last year in minutes</li>
-          <li data-i18n="price_s3">More entries = more revenue, same team</li>
-          <li data-i18n="price_s4">Remote judge onboarding, zero training</li>
-        </ul>
-      </div>
-      <div class="val-col val-col-personalize">
-        <div class="val-col-icon">&#x1f3a8;</div>
-        <h3 data-i18n="price_personalize">Personalize</h3>
-        <ul>
-          <li data-i18n="price_pe1">Custom scoring criteria per category</li>
-          <li data-i18n="price_pe2">Your branding on every touchpoint</li>
-          <li data-i18n="price_pe3">Flexible evaluation forms &amp; workflows</li>
-          <li data-i18n="price_pe4">Tailored reports in your language &amp; format</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Closing -->
     <div class="pricing-close reveal">
       <p data-i18n-html="price_close"><strong>3 % that pays for itself from day one</strong> — not because you need fewer people, but because your people can finally focus on running a world-class event.</p>
     </div>
-
   </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h3 data-i18n="cta_h2">Ready to streamline your next competition?</h3>
+  <p data-i18n="cta_p">Join organizers who save hundreds of hours per event with Compify.</p>
+  <a href="mailto:info@compify.io" class="cta-btn" data-i18n="cta_btn">Get in touch</a>
 </section>
 
 <footer class="footer"><p data-i18n="footer">Compify · The Competition Management Platform</p></footer>
