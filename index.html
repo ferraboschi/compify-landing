@@ -604,29 +604,6 @@ body{
 .val-col-scale h3{color:var(--violet)}
 .val-col-scale li::before{background:var(--violet)}
 
-/* What disappears strip */
-.disappears{
-  margin-bottom:40px;padding:28px 32px;border-radius:16px;
-  background:linear-gradient(135deg,#fef2f2,#fff8f8);
-  border:1px solid rgba(248,113,113,.12);
-  text-align:center;
-}
-.disappears h4{
-  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:#dc2626;margin-bottom:14px;
-}
-.disappears-list{
-  display:flex;flex-wrap:wrap;justify-content:center;gap:8px;
-}
-.disappears-tag{
-  padding:6px 16px;border-radius:100px;
-  background:rgba(248,113,113,.06);
-  border:1px solid rgba(248,113,113,.12);
-  font-size:12px;color:#b91c1c;font-weight:500;
-  text-decoration:line-through;text-decoration-color:rgba(185,28,28,.35);
-  text-decoration-thickness:1.5px;
-}
-
 /* Closing line */
 .pricing-close{
   text-align:center;font-size:17px;color:var(--muted);line-height:1.6;
@@ -753,10 +730,6 @@ body{
   .val-cols{grid-template-columns:1fr;gap:16px}
   .val-col{padding:24px 20px}
   .val-col h3{font-size:16px}
-  .disappears{padding:20px 16px;margin-bottom:28px}
-  .disappears-list{gap:6px}
-  .disappears-tag{padding:5px 12px;font-size:11px}
-
   /* CTA */
   .cta{padding:56px 20px}
   .cta h2{font-size:24px}
@@ -772,9 +745,6 @@ body{
 .hero-text>:nth-child(4){animation-delay:.4s}
 .hero-visual{animation:fadeUp .8s ease .3s both}
 
-/* Disappears tags stagger */
-.disappears-tag{opacity:0;transform:scale(.9);transition:opacity .3s ease,transform .3s ease}
-.visible .disappears-tag{opacity:1;transform:scale(1)}
 </style>
 </head>
 <body>
@@ -1285,20 +1255,6 @@ body{
       </div>
     </div>
 
-    <!-- What disappears -->
-    <div class="disappears reveal">
-      <h4>What you leave behind</h4>
-      <div class="disappears-list">
-        <span class="disappears-tag">Paper ballots</span>
-        <span class="disappears-tag">Manual data entry</span>
-        <span class="disappears-tag">Excel tabulation</span>
-        <span class="disappears-tag">Email chaos</span>
-        <span class="disappears-tag">Handwritten scores</span>
-        <span class="disappears-tag">Post-event disputes</span>
-        <span class="disappears-tag">Week-long reporting</span>
-      </div>
-    </div>
-
     <!-- Closing -->
     <div class="pricing-close reveal">
       <p><strong>3 % that pays for itself from day one</strong> — not because you need fewer people, but because your people can finally focus on running a world-class event.</p>
@@ -1321,10 +1277,6 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
     e.target.classList.add('visible');
-    // Stagger disappears tags
-    e.target.querySelectorAll('.disappears-tag').forEach((el,i) => {
-      el.style.transitionDelay = (i * 60) + 'ms';
-    });
     // Voting bars
     e.target.querySelectorAll('.vote-bar[data-h]').forEach(b => { b.style.height = b.dataset.h });
     // Radar chart
