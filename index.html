@@ -266,8 +266,8 @@ body{
 /* Visual top — fixed height so text aligns across row */
 .ben-visual{
   display:flex;align-items:center;justify-content:center;
-  padding:36px 28px 20px;position:relative;overflow:hidden;
-  height:270px;
+  padding:36px 28px 20px;position:relative;
+  min-height:270px;
 }
 
 /* Text bottom */
@@ -819,7 +819,7 @@ body{
   .ben-text p{font-size:13px}
   /* Visuals on mobile */
   .ben-visual{
-    padding:20px 24px 8px;height:200px;
+    padding:20px 24px 8px;min-height:200px;
   }
   /* Hub */
   .hub{width:200px;height:200px}
@@ -1144,62 +1144,52 @@ body{
         <tr>
           <td data-i18n="cmp_r1">Cost</td>
           <td><span class="cmp-yes">✓</span> <small data-i18n="cmp_r1_gf">Free</small></td>
-          <td><span class="cmp-partial" data-i18n="cmp_r1_cp">3 % of entry fees</span></td>
+          <td><span class="cmp-partial" data-i18n="cmp_r1_cp">3 % of fees</span></td>
         </tr>
         <tr>
-          <td data-i18n="cmp_r2">Setup simplicity</td>
-          <td><span class="cmp-yes">✓</span> <small data-i18n="cmp_r2_gf">Familiar, fast</small></td>
-          <td><span class="cmp-yes">✓</span> <small data-i18n="cmp_r2_cp">Guided, reusable</small></td>
-        </tr>
-        <tr>
-          <td data-i18n="cmp_r3">Bias-free product ordering</td>
+          <td data-i18n="cmp_r2">Tournament logic</td>
           <td><span class="cmp-no">✗</span></td>
-          <td><span class="cmp-yes">✓</span> <small data-i18n="cmp_r3_cp">3 methods</small></td>
+          <td><span class="cmp-yes">✓</span> <small data-i18n="cmp_r2_cp">Sessions, rounds, categories</small></td>
         </tr>
         <tr>
-          <td data-i18n="cmp_r4">Automatic scoring &amp; normalization</td>
+          <td data-i18n="cmp_r3">Judge recruitment &amp; table assignment</td>
+          <td><span class="cmp-no">✗</span></td>
+          <td><span class="cmp-yes">✓</span> <small data-i18n="cmp_r3_cp">Apply, approve, assign</small></td>
+        </tr>
+        <tr>
+          <td data-i18n="cmp_r4">Private judging interface</td>
+          <td><span class="cmp-no">✗</span></td>
+          <td><span class="cmp-yes">✓</span> <small data-i18n="cmp_r4_cp">Anonymous, per device</small></td>
+        </tr>
+        <tr>
+          <td data-i18n="cmp_r5">Live control room</td>
+          <td><span class="cmp-no">✗</span></td>
+          <td><span class="cmp-yes">✓</span> <small data-i18n="cmp_r5_cp">Monitor every table</small></td>
+        </tr>
+        <tr>
+          <td data-i18n="cmp_r6">Automatic scoring &amp; rankings</td>
+          <td><span class="cmp-no">✗</span></td>
+          <td><span class="cmp-yes">✓</span> <small data-i18n="cmp_r6_cp">Normalized, real-time</small></td>
+        </tr>
+        <tr>
+          <td data-i18n="cmp_r7">Rules engine &amp; audit trail</td>
+          <td><span class="cmp-no">✗</span></td>
+          <td><span class="cmp-yes">✓</span> <small data-i18n="cmp_r7_cp">Tamper-proof</small></td>
+        </tr>
+        <tr>
+          <td data-i18n="cmp_r8">Reports, certificates &amp; awards</td>
+          <td><span class="cmp-no">✗</span></td>
+          <td><span class="cmp-yes">✓</span> <small data-i18n="cmp_r8_cp">Auto-generated</small></td>
+        </tr>
+        <tr>
+          <td data-i18n="cmp_r9">Multilingual support</td>
+          <td><span class="cmp-no">✗</span></td>
+          <td><span class="cmp-yes">✓</span> <small data-i18n="cmp_r9_cp">9 languages</small></td>
+        </tr>
+        <tr>
+          <td data-i18n="cmp_r10">Built-in billing &amp; invoicing</td>
           <td><span class="cmp-no">✗</span></td>
           <td><span class="cmp-yes">✓</span></td>
-        </tr>
-        <tr>
-          <td data-i18n="cmp_r5">Real-time monitoring</td>
-          <td><span class="cmp-no">✗</span></td>
-          <td><span class="cmp-yes">✓</span> <small data-i18n="cmp_r5_cp">Control room</small></td>
-        </tr>
-        <tr>
-          <td data-i18n="cmp_r6">Certified audit trail</td>
-          <td><span class="cmp-no">✗</span></td>
-          <td><span class="cmp-yes">✓</span> <small data-i18n="cmp_r6_cp">Tamper-proof</small></td>
-        </tr>
-        <tr>
-          <td data-i18n="cmp_r7">Multilingual judging</td>
-          <td><span class="cmp-no">✗</span></td>
-          <td><span class="cmp-yes">✓</span> <small data-i18n="cmp_r7_cp">9 languages</small></td>
-        </tr>
-        <tr>
-          <td data-i18n="cmp_r8">Auto reports, certificates &amp; invoices</td>
-          <td><span class="cmp-no">✗</span></td>
-          <td><span class="cmp-yes">✓</span></td>
-        </tr>
-        <tr>
-          <td data-i18n="cmp_r9">Clone previous edition</td>
-          <td><span class="cmp-no">✗</span></td>
-          <td><span class="cmp-yes">✓</span> <small data-i18n="cmp_r9_cp">One click</small></td>
-        </tr>
-        <tr>
-          <td data-i18n="cmp_r10">Judge &amp; steward management</td>
-          <td><span class="cmp-no">✗</span></td>
-          <td><span class="cmp-yes">✓</span></td>
-        </tr>
-        <tr>
-          <td data-i18n="cmp_r11">Custom branding</td>
-          <td><span class="cmp-partial" data-i18n="cmp_r11_gf">Limited</span></td>
-          <td><span class="cmp-yes">✓</span> <small data-i18n="cmp_r11_cp">Full white-label</small></td>
-        </tr>
-        <tr>
-          <td data-i18n="cmp_r12">Dispute resolution support</td>
-          <td><span class="cmp-no">✗</span></td>
-          <td><span class="cmp-yes">✓</span> <small data-i18n="cmp_r12_cp">Logged &amp; certified</small></td>
         </tr>
       </tbody>
     </table>
@@ -1472,7 +1462,7 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
-<script src="i18n.js?v=2"></script>
+<script src="i18n.js?v=3"></script>
 <script>
 // Language flags map
 const FLAGS={en:'🇬🇧',it:'🇮🇹',fr:'🇫🇷',es:'🇪🇸',de:'🇩🇪',ja:'🇯🇵',zh:'🇨🇳',pt:'🇵🇹',ko:'🇰🇷'};
