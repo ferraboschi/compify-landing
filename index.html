@@ -81,10 +81,10 @@ body{
 
 /* ── FIRST SCREEN WRAPPER ── */
 .first-screen{
-  min-height:100svh;min-height:100vh;
+  min-height:calc(100vh - 64px);
   display:flex;flex-direction:column;
 }
-@supports(min-height:100svh){.first-screen{min-height:100svh}}
+@supports(min-height:100svh){.first-screen{min-height:calc(100svh - 64px)}}
 
 /* ── HERO ── */
 .hero{position:relative;overflow:hidden;padding:80px 40px 80px;background:linear-gradient(135deg,#0a0f1e 0%,#111d4a 40%,#1e3a8a 100%);color:#fff;flex:1;display:flex;align-items:center}
