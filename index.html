@@ -758,19 +758,14 @@ body{
   .logo img{height:26px;width:auto}
   .lang-sel-btn{padding:4px 8px;font-size:12px}
 
-  /* Hero: stack, center, compact visual */
+  /* Hero: stack, center, hide decorative cards on mobile */
   .hero{padding:40px 20px 48px}
-  .hero-inner{grid-template-columns:1fr;gap:16px}
+  .hero-inner{grid-template-columns:1fr;gap:0}
   .hero-text{text-align:center}
   .hero h1{font-size:28px;margin-bottom:12px}
   .hero p{font-size:14px;margin:0 auto;line-height:1.5}
   .hero-cta{padding:10px 24px;font-size:13px;margin-top:16px}
-  .hero-visual{height:140px}
-  .float-card{padding:8px 10px;border-radius:8px}
-  .float-card h4{font-size:8px;margin-bottom:3px}
-  .float-card .fc-val{font-size:16px}
-  .float-card .fc-sub{font-size:9px}
-  .fc-1{top:0;left:4px}.fc-2{top:10px;right:0}.fc-3{bottom:10px;left:8px}.fc-4{bottom:0;right:4px}
+  .hero-visual{display:none}
 
   /* Overview: 2x2 grid instead of row */
   .overview{margin-top:-24px;padding:0 16px}
