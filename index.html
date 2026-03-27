@@ -212,39 +212,46 @@ body{
 
 /* 2×2 benefit grid */
 .ben-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:2px;
-  background:rgba(255,255,255,.04);
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:rgba(255,255,255,.06);
 }
 .ben-tile{
   display:flex;flex-direction:column;
-  background:linear-gradient(135deg,#0a0f1e,#111d4a);
   position:relative;overflow:hidden;
 }
-.ben-tile:nth-child(2){background:linear-gradient(135deg,#0e1530,#152155)}
-.ben-tile:nth-child(3){background:linear-gradient(135deg,#0e1530,#152155)}
+/* Diagonal color variation — each tile subtly different */
+.ben-tile:nth-child(1){background:linear-gradient(160deg,#080d1e 0%,#0f1a3d 100%)}
+.ben-tile:nth-child(2){background:linear-gradient(160deg,#0b1228 0%,#131f4a 100%)}
+.ben-tile:nth-child(3){background:linear-gradient(160deg,#0b1228 0%,#131f4a 100%)}
+.ben-tile:nth-child(4){background:linear-gradient(160deg,#080d1e 0%,#0f1a3d 100%)}
 
 /* Visual top */
 .ben-visual{
   display:flex;align-items:center;justify-content:center;
-  padding:32px 28px 16px;position:relative;overflow:hidden;
-  min-height:180px;
+  padding:36px 28px 20px;position:relative;overflow:hidden;
+  min-height:190px;
 }
 
 /* Text bottom */
 .ben-text{
-  padding:8px 32px 32px;color:#fff;
+  padding:4px 32px 36px;color:#fff;
 }
 .ben-tag{
   display:inline-flex;align-items:center;gap:8px;
-  font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  margin-bottom:10px;
+  font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:12px;color:rgba(255,255,255,.35);
 }
-.ben-tag .btdot{width:7px;height:7px;border-radius:50%}
+.ben-tag .btdot{width:7px;height:7px;border-radius:50%;box-shadow:0 0 8px currentColor}
 .ben-text h3{
-  font-size:clamp(18px,1.8vw,22px);font-weight:800;line-height:1.2;
-  letter-spacing:-.02em;margin-bottom:8px;
+  font-size:clamp(20px,2.2vw,26px);font-weight:800;line-height:1.2;
+  letter-spacing:-.02em;margin-bottom:10px;
 }
-.ben-text p{font-size:13px;line-height:1.6;color:rgba(255,255,255,.5);max-width:400px}
+/* Each tile h3 gets its own accent color */
+.ben-tile:nth-child(1) .ben-text h3{color:#a0c4ff}
+.ben-tile:nth-child(2) .ben-text h3{color:#c4b5fd}
+.ben-tile:nth-child(3) .ben-text h3{color:#6ee7b7}
+.ben-tile:nth-child(4) .ben-text h3{color:#93c5fd}
+.ben-text p{font-size:13px;line-height:1.6;color:rgba(255,255,255,.45);max-width:400px}
 
 /* ── Hub diagram (All-in-one) ── */
 .hub{position:relative;width:220px;height:220px;opacity:0;transform:scale(.85);transition:opacity .8s,transform .8s cubic-bezier(.4,0,.2,1)}
@@ -672,7 +679,7 @@ body{
   .why-header p{font-size:15px;padding-bottom:40px}
   .ben-grid{grid-template-columns:1fr}
   .ben-text{padding:8px 24px 28px}
-  .ben-text h3{font-size:18px}
+  .ben-text h3{font-size:20px}
   .ben-text p{font-size:13px}
   /* Visuals on mobile */
   .ben-visual{
