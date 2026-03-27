@@ -225,16 +225,17 @@ body{
 .ben-tile:nth-child(3){background:linear-gradient(160deg,#0b1228 0%,#131f4a 100%)}
 .ben-tile:nth-child(4){background:linear-gradient(160deg,#080d1e 0%,#0f1a3d 100%)}
 
-/* Visual top */
+/* Visual top — fixed height so text aligns across row */
 .ben-visual{
   display:flex;align-items:center;justify-content:center;
   padding:36px 28px 20px;position:relative;overflow:hidden;
-  min-height:190px;
+  height:210px;
 }
 
 /* Text bottom */
 .ben-text{
   padding:4px 32px 36px;color:#fff;
+  flex:1;display:flex;flex-direction:column;
 }
 .ben-tag{
   display:inline-flex;align-items:center;gap:8px;
@@ -683,7 +684,7 @@ body{
   .ben-text p{font-size:13px}
   /* Visuals on mobile */
   .ben-visual{
-    padding:20px 24px 8px;min-height:140px;
+    padding:20px 24px 8px;height:160px;
   }
   /* Hub */
   .hub{width:200px;height:200px}
