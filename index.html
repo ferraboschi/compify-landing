@@ -728,9 +728,15 @@ body{
 }
 
 @media(max-width:768px){
-  .compare-inner{padding:0 16px}
-  .compare-table thead th{padding:12px 10px;font-size:12px}
-  .compare-table tbody td{padding:10px 10px;font-size:12px}
+  .compare-inner{padding:0 12px}
+  .compare-table{border-radius:12px}
+  .compare-table thead th{padding:10px 8px;font-size:11px;letter-spacing:.02em;text-transform:uppercase}
+  .compare-table thead th:first-child{width:46%}
+  .compare-table tbody td{padding:8px 8px;font-size:11px;line-height:1.35}
+  .compare-table tbody td:first-child{font-size:12px}
+  .compare-table tbody td small{display:none}
+  .compare-table .cmp-partial{font-size:11px}
+  .cmp-yes,.cmp-no{font-size:15px}
   .why-sub-header{padding:40px 16px 12px}
   .why-sub-header h3{font-size:20px}
 }
