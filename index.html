@@ -47,6 +47,36 @@ body{
 .nav-links a{font-size:14px;font-weight:500;color:var(--muted);text-decoration:none;transition:color .2s}
 .nav-links a:hover{color:var(--text)}
 .nav-links .btn-nav{background:var(--blue);color:#fff !important;padding:8px 20px;border-radius:100px;font-weight:600;font-size:13px;transition:background .2s,transform .15s;box-shadow:0 2px 8px rgba(23,86,200,.25)}
+
+/* Language selector */
+.lang-sel{position:relative}
+.lang-sel-btn{
+  display:flex;align-items:center;gap:5px;
+  background:none;border:1px solid var(--border);border-radius:8px;
+  padding:5px 10px;font-size:13px;font-weight:500;color:var(--muted);
+  cursor:pointer;transition:border-color .2s,color .2s;
+  font-family:inherit;
+}
+.lang-sel-btn:hover{border-color:var(--blue);color:var(--text)}
+.lang-sel-btn .lang-sel-arrow{font-size:10px;opacity:.5;transition:transform .2s}
+.lang-sel.open .lang-sel-arrow{transform:rotate(180deg)}
+.lang-sel-dd{
+  position:absolute;top:calc(100% + 6px);right:0;min-width:140px;
+  background:#fff;border:1px solid var(--border);border-radius:10px;
+  box-shadow:0 8px 24px rgba(0,0,0,.12);
+  opacity:0;pointer-events:none;transform:translateY(-4px);
+  transition:opacity .15s,transform .15s;z-index:110;
+  padding:4px;
+}
+.lang-sel.open .lang-sel-dd{opacity:1;pointer-events:all;transform:translateY(0)}
+.lang-sel-dd button{
+  display:flex;align-items:center;gap:8px;width:100%;
+  background:none;border:none;padding:8px 12px;border-radius:8px;
+  font-size:13px;font-weight:500;color:var(--text);cursor:pointer;
+  font-family:inherit;transition:background .15s;
+}
+.lang-sel-dd button:hover{background:rgba(23,86,200,.06)}
+.lang-sel-dd button.active{background:rgba(23,86,200,.08);font-weight:700;color:var(--blue)}
 .nav-links .btn-nav:hover{background:#1248a8;transform:translateY(-1px);box-shadow:0 4px 12px rgba(23,86,200,.35)}
 
 /* ── HERO ── */
@@ -656,8 +686,10 @@ body{
 /* ── RESPONSIVE ── */
 @media(max-width:768px){
   .nav{padding:0 16px}
-  .nav-links{display:none}
+  .nav-links>a{display:none}
+  .nav-links{gap:0}
   .logo img{height:26px;width:auto}
+  .lang-sel-btn{padding:4px 8px;font-size:12px}
 
   /* Hero: stack, center, compact visual */
   .hero{padding:56px 20px 72px}
@@ -788,9 +820,26 @@ body{
   <div class="nav-inner">
     <a href="#" class="logo"><img src="logo.png" alt="Compify"/></a>
     <div class="nav-links">
-      <a href="#platform">Platform</a>
-      <a href="#savings">Pricing</a>
-      <a href="#benefits" class="btn-nav">Why Compify</a>
+      <a href="#platform" data-i18n="nav_platform">Platform</a>
+      <a href="#savings" data-i18n="nav_pricing">Pricing</a>
+      <a href="#benefits" class="btn-nav" data-i18n="nav_why">Why Compify</a>
+      <div class="lang-sel" id="langSel">
+        <button class="lang-sel-btn" onclick="document.getElementById('langSel').classList.toggle('open')">
+          <span id="langCurrent">🇬🇧 EN</span>
+          <span class="lang-sel-arrow">▾</span>
+        </button>
+        <div class="lang-sel-dd" id="langDD">
+          <button data-lang="en" class="active">🇬🇧 English</button>
+          <button data-lang="it">🇮🇹 Italiano</button>
+          <button data-lang="fr">🇫🇷 Français</button>
+          <button data-lang="es">🇪🇸 Español</button>
+          <button data-lang="de">🇩🇪 Deutsch</button>
+          <button data-lang="ja">🇯🇵 日本語</button>
+          <button data-lang="zh">🇨🇳 中文</button>
+          <button data-lang="pt">🇵🇹 Português</button>
+          <button data-lang="ko">🇰🇷 한국어</button>
+        </div>
+      </div>
     </div>
   </div>
 </nav>
@@ -802,19 +851,19 @@ body{
   <div class="hero-orb hero-orb-3"></div>
   <div class="hero-inner">
     <div class="hero-text">
-      <div class="hero-badge">Organizer Platform</div>
-      <h1>Run world-class competitions — <em>effortlessly</em></h1>
-      <p>From setup to awards, one powerful platform to configure, recruit, manage, and analyze every aspect of your competition.</p>
-      <a href="#platform" class="hero-cta">See how it works</a>
+      <div class="hero-badge" data-i18n="hero_badge">Organizer Platform</div>
+      <h1><span data-i18n="hero_h1">Run world-class competitions —</span> <em data-i18n="hero_h1_em">effortlessly</em></h1>
+      <p data-i18n="hero_p">From setup to awards, one powerful platform to configure, recruit, manage, and analyze every aspect of your competition.</p>
+      <a href="#platform" class="hero-cta" data-i18n="hero_cta">See how it works</a>
     </div>
     <div class="hero-visual">
       <div class="float-card fc-1">
-        <h4>Entries</h4>
+        <h4 data-i18n="fc_entries">Entries</h4>
         <div class="fc-val">2,847</div>
-        <div class="fc-sub">+12% vs last edition</div>
+        <div class="fc-sub" data-i18n="fc_entries_sub">+12% vs last edition</div>
       </div>
       <div class="float-card fc-2">
-        <h4>Voting Progress</h4>
+        <h4 data-i18n="fc_voting">Voting Progress</h4>
         <div class="fc-bars">
           <div class="fc-bar active" style="height:60%"></div>
           <div class="fc-bar active" style="height:85%"></div>
@@ -824,10 +873,10 @@ body{
           <div class="fc-bar" style="height:30%"></div>
           <div class="fc-bar" style="height:15%"></div>
         </div>
-        <div class="fc-sub">Session 3 · Live</div>
+        <div class="fc-sub" data-i18n="fc_session">Session 3 · Live</div>
       </div>
       <div class="float-card fc-3">
-        <h4>Judges Online</h4>
+        <h4 data-i18n="fc_judges">Judges Online</h4>
         <div class="fc-dots">
           <div class="fc-dot" style="background:#34d399"></div>
           <div class="fc-dot" style="background:#34d399"></div>
@@ -838,7 +887,7 @@ body{
         <div class="fc-val" style="font-size:20px;margin-top:4px">24 / 26</div>
       </div>
       <div class="float-card fc-4">
-        <h4>Awards Ready</h4>
+        <h4 data-i18n="fc_awards">Awards Ready</h4>
         <div class="fc-val" style="font-size:22px;color:#34d399">Gold · 14</div>
         <div class="fc-sub">Silver · 28 &nbsp; Bronze · 41</div>
       </div>
@@ -851,26 +900,26 @@ body{
   <div class="overview-inner reveal">
     <a href="#configure" class="ov-step ov-blue">
       <div class="ov-icon"><img src="configure.svg" alt="Configure"/></div>
-      <div class="ov-label">Configure</div>
-      <div class="ov-phase">Before</div>
+      <div class="ov-label" data-i18n="ov_configure">Configure</div>
+      <div class="ov-phase" data-i18n="ov_before">Before</div>
     </a>
     <div class="ov-arrow"><svg viewBox="0 0 36 12"><path d="M0 6h32M28 1l6 5-6 5" fill="none" stroke="#c7d2e0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     <a href="#recruit" class="ov-step ov-gold">
       <div class="ov-icon"><img src="recruit.svg" alt="Recruit"/></div>
-      <div class="ov-label">Recruit</div>
-      <div class="ov-phase">Before</div>
+      <div class="ov-label" data-i18n="ov_recruit">Recruit</div>
+      <div class="ov-phase" data-i18n="ov_before">Before</div>
     </a>
     <div class="ov-arrow"><svg viewBox="0 0 36 12"><path d="M0 6h32M28 1l6 5-6 5" fill="none" stroke="#c7d2e0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     <a href="#manage" class="ov-step ov-violet">
       <div class="ov-icon"><img src="manage.svg" alt="Manage"/></div>
-      <div class="ov-label">Manage</div>
-      <div class="ov-phase">During</div>
+      <div class="ov-label" data-i18n="ov_manage">Manage</div>
+      <div class="ov-phase" data-i18n="ov_during">During</div>
     </a>
     <div class="ov-arrow"><svg viewBox="0 0 36 12"><path d="M0 6h32M28 1l6 5-6 5" fill="none" stroke="#c7d2e0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     <a href="#analyze" class="ov-step ov-green">
       <div class="ov-icon"><img src="analyze.svg" alt="Analyze"/></div>
-      <div class="ov-label">Analyze</div>
-      <div class="ov-phase">After</div>
+      <div class="ov-label" data-i18n="ov_analyze">Analyze</div>
+      <div class="ov-phase" data-i18n="ov_after">After</div>
     </a>
   </div>
 </div>
@@ -881,21 +930,21 @@ body{
 <section class="plat-section sec-configure" id="configure">
   <div class="plat-inner reveal">
     <div>
-      <div class="plat-phase"><span class="pdot"></span> Before the event</div>
-      <h2>Configure your competition from scratch</h2>
-      <p class="plat-desc">Set up every detail before day one — competition info, evaluation sessions, scoring criteria, and a real-time dashboard. One hub replaces scattered spreadsheets.</p>
+      <div class="plat-phase"><span class="pdot"></span> <span data-i18n="cfg_phase">Before the event</span></div>
+      <h2 data-i18n="cfg_h2">Configure your competition from scratch</h2>
+      <p class="plat-desc" data-i18n="cfg_desc">Set up every detail before day one — competition info, evaluation sessions, scoring criteria, and a real-time dashboard. One hub replaces scattered spreadsheets.</p>
       <div class="plat-features">
         <div class="plat-feat">
           <div class="plat-feat-icon">📊</div>
-          <div><h4>Dashboard</h4><p>Key metrics, registration trends, session status — all in one glance.</p></div>
+          <div><h4 data-i18n="cfg_f1_h">Dashboard</h4><p data-i18n="cfg_f1_p">Key metrics, registration trends, session status — all in one glance.</p></div>
         </div>
         <div class="plat-feat">
           <div class="plat-feat-icon">🗓</div>
-          <div><h4>Sessions &amp; Categories</h4><p>Create parallel evaluation sessions by product type, each with its own categories and rules.</p></div>
+          <div><h4 data-i18n="cfg_f2_h">Sessions &amp; Categories</h4><p data-i18n="cfg_f2_p">Create parallel evaluation sessions by product type, each with its own categories and rules.</p></div>
         </div>
         <div class="plat-feat">
           <div class="plat-feat-icon">✏️</div>
-          <div><h4>Evaluation Forms</h4><p>Standard scoring criteria plus custom questions. Full flexibility, zero compromise.</p></div>
+          <div><h4 data-i18n="cfg_f3_h">Evaluation Forms</h4><p data-i18n="cfg_f3_p">Standard scoring criteria plus custom questions. Full flexibility, zero compromise.</p></div>
         </div>
       </div>
     </div>
@@ -909,21 +958,21 @@ body{
 <section class="plat-section sec-recruit" id="recruit">
   <div class="plat-inner reverse reveal">
     <div>
-      <div class="plat-phase"><span class="pdot"></span> Before the event</div>
-      <h2>Recruit judges, stewards &amp; producers</h2>
-      <p class="plat-desc">Structured application and registration flows for every participant. Judges apply, producers register, stewards are coordinated — no one falls through the cracks.</p>
+      <div class="plat-phase"><span class="pdot"></span> <span data-i18n="rec_phase">Before the event</span></div>
+      <h2 data-i18n="rec_h2">Recruit judges, stewards &amp; producers</h2>
+      <p class="plat-desc" data-i18n="rec_desc">Structured application and registration flows for every participant. Judges apply, producers register, stewards are coordinated — no one falls through the cracks.</p>
       <div class="plat-features">
         <div class="plat-feat">
           <div class="plat-feat-icon">📝</div>
-          <div><h4>Candidacy Management</h4><p>Build application forms for judges and stewards. Review, approve or reject from a single inbox.</p></div>
+          <div><h4 data-i18n="rec_f1_h">Candidacy Management</h4><p data-i18n="rec_f1_p">Build application forms for judges and stewards. Review, approve or reject from a single inbox.</p></div>
         </div>
         <div class="plat-feat">
           <div class="plat-feat-icon">🎟</div>
-          <div><h4>Registration</h4><p>Dedicated signup flow for producers entering their products. Clear, separated, frictionless.</p></div>
+          <div><h4 data-i18n="rec_f2_h">Registration</h4><p data-i18n="rec_f2_p">Dedicated signup flow for producers entering their products. Clear, separated, frictionless.</p></div>
         </div>
         <div class="plat-feat">
           <div class="plat-feat-icon">👨‍⚖️</div>
-          <div><h4>Jury &amp; Table Assignment</h4><p>Full directory of profiles, qualifications, session assignments. Every person knows exactly where to go.</p></div>
+          <div><h4 data-i18n="rec_f3_h">Jury &amp; Table Assignment</h4><p data-i18n="rec_f3_p">Full directory of profiles, qualifications, session assignments. Every person knows exactly where to go.</p></div>
         </div>
       </div>
     </div>
@@ -937,21 +986,21 @@ body{
 <section class="plat-section sec-manage" id="manage">
   <div class="plat-inner reveal">
     <div>
-      <div class="plat-phase"><span class="pdot"></span> During the event</div>
-      <h2>Run competition day with total control</h2>
-      <p class="plat-desc">Monitor every session in real time from the control room. Enforce rules automatically. Judges vote from their dedicated page — cleanly, privately, without errors.</p>
+      <div class="plat-phase"><span class="pdot"></span> <span data-i18n="mng_phase">During the event</span></div>
+      <h2 data-i18n="mng_h2">Run competition day with total control</h2>
+      <p class="plat-desc" data-i18n="mng_desc">Monitor every session in real time from the control room. Enforce rules automatically. Judges vote from their dedicated page — cleanly, privately, without errors.</p>
       <div class="plat-features">
         <div class="plat-feat">
           <div class="plat-feat-icon">🎛</div>
-          <div><h4>Control Room</h4><p>Start/pause sessions, monitor votes, track progress across all categories at a glance.</p></div>
+          <div><h4 data-i18n="mng_f1_h">Control Room</h4><p data-i18n="mng_f1_p">Start/pause sessions, monitor votes, track progress across all categories at a glance.</p></div>
         </div>
         <div class="plat-feat">
           <div class="plat-feat-icon">📱</div>
-          <div><h4>Judges Page</h4><p>A dedicated voting interface for each judge. Clean, private, designed for focus and accuracy.</p></div>
+          <div><h4 data-i18n="mng_f2_h">Judges Page</h4><p data-i18n="mng_f2_p">A dedicated voting interface for each judge. Clean, private, designed for focus and accuracy.</p></div>
         </div>
         <div class="plat-feat">
           <div class="plat-feat-icon">🔒</div>
-          <div><h4>Rules Engine &amp; Data Logging</h4><p>Automatic rule enforcement. Every vote, every action logged immutably in real time.</p></div>
+          <div><h4 data-i18n="mng_f3_h">Rules Engine &amp; Data Logging</h4><p data-i18n="mng_f3_p">Automatic rule enforcement. Every vote, every action logged immutably in real time.</p></div>
         </div>
       </div>
     </div>
@@ -965,21 +1014,21 @@ body{
 <section class="plat-section sec-analyze" id="analyze">
   <div class="plat-inner reverse reveal">
     <div>
-      <div class="plat-phase"><span class="pdot"></span> After the event</div>
-      <h2>Analyze results &amp; close the loop</h2>
-      <p class="plat-desc">Turn raw data into professional reports, multilingual technical sheets, medal standings and certificates. Manage billing and notify everyone — one click.</p>
+      <div class="plat-phase"><span class="pdot"></span> <span data-i18n="anl_phase">After the event</span></div>
+      <h2 data-i18n="anl_h2">Analyze results &amp; close the loop</h2>
+      <p class="plat-desc" data-i18n="anl_desc">Turn raw data into professional reports, multilingual technical sheets, medal standings and certificates. Manage billing and notify everyone — one click.</p>
       <div class="plat-features">
         <div class="plat-feat">
           <div class="plat-feat-icon">📈</div>
-          <div><h4>Reports &amp; Statistics</h4><p>Auto-generated product reports with radar charts, KPI dashboards. Export as PDF or Excel.</p></div>
+          <div><h4 data-i18n="anl_f1_h">Reports &amp; Statistics</h4><p data-i18n="anl_f1_p">Auto-generated product reports with radar charts, KPI dashboards. Export as PDF or Excel.</p></div>
         </div>
         <div class="plat-feat">
           <div class="plat-feat-icon">🏆</div>
-          <div><h4>Awards &amp; Multilingual Sheets</h4><p>Medal standings, winner certificates, technical sheets in any language. The culmination of every competition.</p></div>
+          <div><h4 data-i18n="anl_f2_h">Awards &amp; Multilingual Sheets</h4><p data-i18n="anl_f2_p">Medal standings, winner certificates, technical sheets in any language. The culmination of every competition.</p></div>
         </div>
         <div class="plat-feat">
           <div class="plat-feat-icon">💰</div>
-          <div><h4>Billing &amp; Notifications</h4><p>Configure fees, collect invoices, send automated alerts for every milestone. No email back-and-forth.</p></div>
+          <div><h4 data-i18n="anl_f3_h">Billing &amp; Notifications</h4><p data-i18n="anl_f3_p">Configure fees, collect invoices, send automated alerts for every milestone. No email back-and-forth.</p></div>
         </div>
       </div>
     </div>
@@ -993,8 +1042,8 @@ body{
 <section class="why" id="benefits">
 
   <div class="why-header">
-    <h2 class="reveal">Why Compify</h2>
-    <p class="reveal">It's like having a project manager that never sleeps, never makes mistakes, and remembers everything.</p>
+    <h2 class="reveal" data-i18n="why_h2">Why Compify</h2>
+    <p class="reveal" data-i18n="why_p">It's like having a project manager that never sleeps, never makes mistakes, and remembers everything.</p>
   </div>
 
   <div class="ben-grid">
@@ -1015,9 +1064,9 @@ body{
         </div>
       </div>
       <div class="ben-text">
-        <div class="ben-tag"><span class="btdot" style="background:var(--blue-mid)"></span> All-in-one intelligence</div>
-        <h3>One brain for your entire competition</h3>
-        <p>Every entry, judge, rule, and score in one place. No spreadsheets, no copy-pasting. Next edition? Clone last year's setup in one click and you're live.</p>
+        <div class="ben-tag"><span class="btdot" style="background:var(--blue-mid)"></span> <span data-i18n="ben1_tag">All-in-one intelligence</span></div>
+        <h3 data-i18n="ben1_h3">One brain for your entire competition</h3>
+        <p data-i18n="ben1_p">Every entry, judge, rule, and score in one place. No spreadsheets, no copy-pasting. Next edition? Clone last year's setup in one click and you're live.</p>
       </div>
     </div>
 
@@ -1033,7 +1082,7 @@ body{
               <div class="vote-bar" data-h="85%"></div>
               <div class="vote-bar" data-h="100%"></div>
             </div>
-            <div class="vote-col-label">Linear</div>
+            <div class="vote-col-label" data-i18n="vote_linear">Linear</div>
           </div>
           <div class="vote-col">
             <div class="vote-bars">
@@ -1043,7 +1092,7 @@ body{
               <div class="vote-bar" data-h="50%"></div>
               <div class="vote-bar" data-h="65%"></div>
             </div>
-            <div class="vote-col-label">Random</div>
+            <div class="vote-col-label" data-i18n="vote_random">Random</div>
           </div>
           <div class="vote-col">
             <div class="vote-bars">
@@ -1053,16 +1102,16 @@ body{
               <div class="vote-bar" data-h="74%"></div>
               <div class="vote-bar" data-h="71%"></div>
             </div>
-            <div class="vote-col-label">Algorithm</div>
+            <div class="vote-col-label" data-i18n="vote_algorithm">Algorithm</div>
           </div>
         </div>
       </div>
       <div class="ben-text">
-        <div class="ben-tag"><span class="btdot" style="background:#a78bfa"></span> Mathematical engine</div>
-        <h3>Precision by design, not by luck</h3>
-        <p>Three product ordering methods eliminate bias. Weighted averages, score normalization and radar charts are generated automatically. The math speaks — not opinions.</p>
+        <div class="ben-tag"><span class="btdot" style="background:#a78bfa"></span> <span data-i18n="ben2_tag">Mathematical engine</span></div>
+        <h3 data-i18n="ben2_h3">Precision by design, not by luck</h3>
+        <p data-i18n="ben2_p">Three product ordering methods eliminate bias. Weighted averages, score normalization and radar charts are generated automatically. The math speaks — not opinions.</p>
         <button class="ben-link" onclick="document.getElementById('voteModal').classList.add('open')">
-          Explore the 3 methods
+          <span data-i18n="ben2_link">Explore the 3 methods</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
       </div>
@@ -1076,21 +1125,21 @@ body{
             <div class="ledger-row">
               <div class="ledger-dot" style="background:#34d399"></div>
               <div class="ledger-time">09:14:02</div>
-              <div class="ledger-action">Vote recorded</div>
+              <div class="ledger-action" data-i18n="ledger_vote">Vote recorded</div>
               <div class="ledger-line" style="background:rgba(52,211,153,.15);width:40%"></div>
               <div class="ledger-hash">0x3a7f…c2</div>
             </div>
             <div class="ledger-row">
               <div class="ledger-dot" style="background:#34d399"></div>
               <div class="ledger-time">09:14:18</div>
-              <div class="ledger-action">Score saved</div>
+              <div class="ledger-action" data-i18n="ledger_score">Score saved</div>
               <div class="ledger-line" style="background:rgba(52,211,153,.15);width:30%"></div>
               <div class="ledger-hash">0x91b2…f8</div>
             </div>
             <div class="ledger-row">
               <div class="ledger-dot" style="background:#34d399"></div>
               <div class="ledger-time">09:15:41</div>
-              <div class="ledger-action">Rule checked</div>
+              <div class="ledger-action" data-i18n="ledger_rule">Rule checked</div>
               <div class="ledger-line" style="background:rgba(52,211,153,.15);width:35%"></div>
               <div class="ledger-hash">0xc4e8…1a</div>
             </div>
@@ -1104,21 +1153,21 @@ body{
             <div class="ledger-row">
               <div class="ledger-dot" style="background:#34d399"></div>
               <div class="ledger-time">09:16:29</div>
-              <div class="ledger-action">Session sealed</div>
+              <div class="ledger-action" data-i18n="ledger_sealed">Session sealed</div>
               <div class="ledger-line" style="background:rgba(52,211,153,.15);width:45%"></div>
               <div class="ledger-hash">0xf5a0…6b</div>
             </div>
           </div>
           <div class="cert-badge cert-badge-pulse">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-            Certified &amp; Tamper-proof
+            <span data-i18n="ben3_badge">Certified &amp; Tamper-proof</span>
           </div>
         </div>
       </div>
       <div class="ben-text">
-        <div class="ben-tag"><span class="btdot" style="background:#34d399"></span> Certified &amp; auditable</div>
-        <h3>Every action logged. Every result defensible.</h3>
-        <p>Immutable timestamps on every vote, assignment, and score change. Auditable, certified results that withstand any challenge or regulatory review.</p>
+        <div class="ben-tag"><span class="btdot" style="background:#34d399"></span> <span data-i18n="ben3_tag">Certified &amp; auditable</span></div>
+        <h3 data-i18n="ben3_h3">Every action logged. Every result defensible.</h3>
+        <p data-i18n="ben3_p">Immutable timestamps on every vote, assignment, and score change. Auditable, certified results that withstand any challenge or regulatory review.</p>
       </div>
     </div>
 
@@ -1144,9 +1193,9 @@ body{
         </div>
       </div>
       <div class="ben-text">
-        <div class="ben-tag"><span class="btdot" style="background:var(--blue-mid)"></span> Multilingual by design</div>
-        <h3>Every judge writes in their language. Reports speak yours.</h3>
-        <p>Judges evaluate in their native language — no barriers. Reports and technical sheets are generated in any language you need. True international competitions.</p>
+        <div class="ben-tag"><span class="btdot" style="background:var(--blue-mid)"></span> <span data-i18n="ben4_tag">Multilingual by design</span></div>
+        <h3 data-i18n="ben4_h3">Every judge writes in their language. Reports speak yours.</h3>
+        <p data-i18n="ben4_p">Judges evaluate in their native language — no barriers. Reports and technical sheets are generated in any language you need. True international competitions.</p>
       </div>
     </div>
 
@@ -1158,34 +1207,34 @@ body{
 <div class="modal-overlay" id="voteModal" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="modal">
     <button class="modal-close" onclick="document.getElementById('voteModal').classList.remove('open')">×</button>
-    <h2>Product Ordering Methods</h2>
-    <p class="modal-sub">How Compify decides the order in which products are presented to each judge.</p>
+    <h2 data-i18n="modal_h2">Product Ordering Methods</h2>
+    <p class="modal-sub" data-i18n="modal_sub">How Compify decides the order in which products are presented to each judge.</p>
     <div class="method-cards">
 
       <div class="method-card m-linear">
-        <h3><span class="method-icon">━</span> Linear</h3>
-        <p class="method-desc">Products are presented in the <strong>same fixed numerical order</strong> to every judge — bottle 1, bottle 2, bottle 3. The classic setup: simple, predictable, and easy for <strong>stewards to manage on the floor</strong>. Every judge evaluates the same sequence, making logistics straightforward and coordination minimal.</p>
+        <h3><span class="method-icon">━</span> <span data-i18n="modal_linear_h">Linear</span></h3>
+        <p class="method-desc"><span data-i18n-html="modal_linear_desc">Products are presented in the <strong>same fixed numerical order</strong> to every judge — bottle 1, bottle 2, bottle 3. The classic setup: simple, predictable, and easy for <strong>stewards to manage on the floor</strong>. Every judge evaluates the same sequence, making logistics straightforward and coordination minimal.</span></p>
         <div class="method-best">
-          <span class="method-best-label">Ideal for:</span>
-          Traditional in-person competitions, sommelier exams, small panels with a fixed tasting flight
+          <span class="method-best-label" data-i18n="modal_ideal">Ideal for:</span>
+          <span data-i18n="modal_linear_best">Traditional in-person competitions, sommelier exams, small panels with a fixed tasting flight</span>
         </div>
       </div>
 
       <div class="method-card m-random">
-        <h3><span class="method-icon">⟠</span> Randomized</h3>
-        <p class="method-desc">Each judge receives products in a <strong>completely unique random order</strong>, generated by Compify at the start of the session. This <strong>eliminates position bias</strong> — no product is systematically penalized by always being tasted first or last. Particularly effective when the <strong>back office controls the serving sequence</strong> or when judges evaluate remotely on their own devices.</p>
+        <h3><span class="method-icon">⟠</span> <span data-i18n="modal_random_h">Randomized</span></h3>
+        <p class="method-desc"><span data-i18n-html="modal_random_desc">Each judge receives products in a <strong>completely unique random order</strong>, generated by Compify at the start of the session. This <strong>eliminates position bias</strong> — no product is systematically penalized by always being tasted first or last. Particularly effective when the <strong>back office controls the serving sequence</strong> or when judges evaluate remotely on their own devices.</span></p>
         <div class="method-best">
-          <span class="method-best-label">Ideal for:</span>
-          Online competitions, remote judging, events where the back office defines the product sequence
+          <span class="method-best-label" data-i18n="modal_ideal">Ideal for:</span>
+          <span data-i18n="modal_random_best">Online competitions, remote judging, events where the back office defines the product sequence</span>
         </div>
       </div>
 
       <div class="method-card m-guided">
-        <h3><span class="method-icon">◆</span> Algorithm-guided</h3>
-        <p class="method-desc">Compify's <strong>proprietary algorithm builds a custom tasting order for each judge</strong>, optimizing across multiple dimensions simultaneously: it <strong>separates products from the same producer</strong>, alternates between categories to allow <strong>palate recovery</strong>, avoids clustering similar styles, and ensures <strong>statistical fairness</strong> across the full panel. The result is a tasting path that maximizes evaluation accuracy — something no manual planning could achieve at scale.</p>
+        <h3><span class="method-icon">◆</span> <span data-i18n="modal_guided_h">Algorithm-guided</span></h3>
+        <p class="method-desc"><span data-i18n-html="modal_guided_desc">Compify's <strong>proprietary algorithm builds a custom tasting order for each judge</strong>, optimizing across multiple dimensions simultaneously: it <strong>separates products from the same producer</strong>, alternates between categories to allow <strong>palate recovery</strong>, avoids clustering similar styles, and ensures <strong>statistical fairness</strong> across the full panel. The result is a tasting path that maximizes evaluation accuracy — something no manual planning could achieve at scale.</span></p>
         <div class="method-best">
-          <span class="method-best-label">Ideal for:</span>
-          High-stakes international competitions, large panels (50+ entries), multi-category events requiring maximum precision
+          <span class="method-best-label" data-i18n="modal_ideal">Ideal for:</span>
+          <span data-i18n="modal_guided_best">High-stakes international competitions, large panels (50+ entries), multi-category events requiring maximum precision</span>
         </div>
       </div>
 
@@ -1193,7 +1242,7 @@ body{
 
     <!-- Languages -->
     <div class="modal-langs">
-      <h4>Available languages</h4>
+      <h4 data-i18n="modal_langs_h">Available languages</h4>
       <div class="lang-grid">
         <span class="lang-tag"><span class="lang-flag">🇬🇧</span> English</span>
         <span class="lang-tag"><span class="lang-flag">🇮🇹</span> Italiano</span>
@@ -1220,8 +1269,8 @@ body{
         <div class="pct-number">3<span>%</span></div>
       </div>
       <div class="pricing-headline">
-        <h2>What 3 % gets you</h2>
-        <p>Of entry fees. That's it — no surprises, no hidden costs. Here's what that 3 % eliminates — and what it makes possible.</p>
+        <h2 data-i18n="price_h2">What 3 % gets you</h2>
+        <p data-i18n="price_sub">Of entry fees. That's it — no surprises, no hidden costs. Here's what that 3 % eliminates — and what it makes possible.</p>
       </div>
     </div>
 
@@ -1229,39 +1278,39 @@ body{
     <div class="val-cols reveal">
       <div class="val-col val-col-unlock">
         <div class="val-col-icon">&#x1f513;</div>
-        <h3>Unlock</h3>
+        <h3 data-i18n="price_unlock">Unlock</h3>
         <ul>
-          <li>Instant results when voting closes</li>
-          <li>Auto certificates, reports &amp; invoices</li>
-          <li>Multilingual judging &amp; reports</li>
-          <li>Branded competition page included</li>
+          <li data-i18n="price_u1">Instant results when voting closes</li>
+          <li data-i18n="price_u2">Auto certificates, reports &amp; invoices</li>
+          <li data-i18n="price_u3">Multilingual judging &amp; reports</li>
+          <li data-i18n="price_u4">Branded competition page included</li>
         </ul>
       </div>
       <div class="val-col val-col-protect">
         <div class="val-col-icon">&#x1f6e1;</div>
-        <h3>Protect</h3>
+        <h3 data-i18n="price_protect">Protect</h3>
         <ul>
-          <li>Tamper-proof, hash-verified audit trail</li>
-          <li>Zero transcription or data-entry errors</li>
-          <li>Consistent mathematical scoring rules</li>
-          <li>Dispute-proof, certified results</li>
+          <li data-i18n="price_p1">Tamper-proof, hash-verified audit trail</li>
+          <li data-i18n="price_p2">Zero transcription or data-entry errors</li>
+          <li data-i18n="price_p3">Consistent mathematical scoring rules</li>
+          <li data-i18n="price_p4">Dispute-proof, certified results</li>
         </ul>
       </div>
       <div class="val-col val-col-scale">
         <div class="val-col-icon">&#x1f680;</div>
-        <h3>Scale</h3>
+        <h3 data-i18n="price_scale">Scale</h3>
         <ul>
-          <li>50 or 5,000 entries — same workflow</li>
-          <li>Replicate last year in minutes</li>
-          <li>More entries = more revenue, same team</li>
-          <li>Remote judge onboarding, zero training</li>
+          <li data-i18n="price_s1">50 or 5,000 entries — same workflow</li>
+          <li data-i18n="price_s2">Replicate last year in minutes</li>
+          <li data-i18n="price_s3">More entries = more revenue, same team</li>
+          <li data-i18n="price_s4">Remote judge onboarding, zero training</li>
         </ul>
       </div>
     </div>
 
     <!-- Closing -->
     <div class="pricing-close reveal">
-      <p><strong>3 % that pays for itself from day one</strong> — not because you need fewer people, but because your people can finally focus on running a world-class event.</p>
+      <p data-i18n-html="price_close"><strong>3 % that pays for itself from day one</strong> — not because you need fewer people, but because your people can finally focus on running a world-class event.</p>
     </div>
 
   </div>
@@ -1269,12 +1318,12 @@ body{
 
 <!-- CTA -->
 <section class="cta reveal">
-  <h2>Ready to streamline your next competition?</h2>
-  <p>Join organizers who save hundreds of hours per event with Compify.</p>
-  <a href="mailto:info@compify.io" class="cta-btn">Get in touch</a>
+  <h2 data-i18n="cta_h2">Ready to streamline your next competition?</h2>
+  <p data-i18n="cta_p">Join organizers who save hundreds of hours per event with Compify.</p>
+  <a href="mailto:info@compify.io" class="cta-btn" data-i18n="cta_btn">Get in touch</a>
 </section>
 
-<footer class="footer"><p>Compify · The Competition Management Platform</p></footer>
+<footer class="footer"><p data-i18n="footer">Compify · The Competition Management Platform</p></footer>
 
 <script>
 const obs = new IntersectionObserver(entries => {
@@ -1295,6 +1344,53 @@ const obs = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+<script src="i18n.js"></script>
+<script>
+// Language flags map
+const FLAGS={en:'🇬🇧',it:'🇮🇹',fr:'🇫🇷',es:'🇪🇸',de:'🇩🇪',ja:'🇯🇵',zh:'🇨🇳',pt:'🇵🇹',ko:'🇰🇷'};
+const NAMES={en:'EN',it:'IT',fr:'FR',es:'ES',de:'DE',ja:'JA',zh:'ZH',pt:'PT',ko:'KO'};
+
+function setLang(lang){
+  if(!T[lang]) lang='en';
+  const tr=T[lang];
+  // textContent for data-i18n
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    if(tr[el.dataset.i18n]!==undefined) el.textContent=tr[el.dataset.i18n];
+  });
+  // innerHTML for data-i18n-html (contains <strong> etc)
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+    if(tr[el.dataset.i18nHtml]!==undefined) el.innerHTML=tr[el.dataset.i18nHtml];
+  });
+  // Update selector UI
+  document.getElementById('langCurrent').textContent=FLAGS[lang]+' '+NAMES[lang];
+  document.querySelectorAll('#langDD button').forEach(b=>{
+    b.classList.toggle('active',b.dataset.lang===lang);
+  });
+  document.getElementById('langSel').classList.remove('open');
+  document.documentElement.lang=lang;
+  localStorage.setItem('compify_lang',lang);
+}
+
+// Dropdown click handlers
+document.querySelectorAll('#langDD button').forEach(b=>{
+  b.addEventListener('click',()=>setLang(b.dataset.lang));
+});
+
+// Close dropdown on outside click
+document.addEventListener('click',e=>{
+  if(!e.target.closest('#langSel')) document.getElementById('langSel').classList.remove('open');
+});
+
+// Auto-detect language
+(function(){
+  const saved=localStorage.getItem('compify_lang');
+  if(saved&&T[saved]){setLang(saved);return;}
+  const nav=(navigator.language||navigator.userLanguage||'en').toLowerCase();
+  const code=nav.split('-')[0];
+  if(T[code]){setLang(code);}
+  // else keep english default
+})();
 </script>
 
 </body>
